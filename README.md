@@ -4,6 +4,7 @@
 
 *My Fridge* aims to help customers keep track of food times in their fridge and pantry, providing an efficient way manage their fridge/pantry. Our app will help reduce food waste and simplify meal planning. It features an intuitive interface, making it easy to manage items, set expiration dates, receive notifications, and even find recipe suggestions based on currently stocked food items.
 
+
 ## App Content
 We suggest exploring the guide of our app content below:
 
@@ -21,6 +22,10 @@ We suggest exploring the guide of our app content below:
     <summary>Main Page</summary>
       <p>Description</p>
       
+    + Task List
+      + [ ] Menu
+      + [ ] Default page = list page<br/>
+      
       ##### View
       IMG
     </details>
@@ -28,7 +33,7 @@ We suggest exploring the guide of our app content below:
   + 
     ####
     <details>
-    <summary>Fridge Page</summary>
+    <summary>List Page</summary>
       <p>Description</p>
       
       ##### View
