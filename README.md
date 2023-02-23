@@ -24,7 +24,7 @@ We suggest exploring the guide of our app content below:
 
 ## License
 This project is licensed under the `TODO`.
-## Our Team
 
+## Our Team
 [@Nechanie](https://github.com/nechanie),
 [@METrimble](https://github.com/METrimble)
