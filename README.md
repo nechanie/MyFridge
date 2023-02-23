@@ -23,7 +23,7 @@ We suggest exploring the guide of our app content below:
 </details>
 
 ## License
-This project is licensed under the `TODO`.
+*My Fridge* is available as open source under the terms of the [MIT License ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT).
 
 ## Our Team
 [@Nechanie](https://github.com/nechanie),
