@@ -77,7 +77,8 @@ class ListRemoteViewsFactory(
 
     override fun getViewAt(position: Int): RemoteViews {
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
-            setTextViewText(R.id.widget_text, itemList[position].name)
+            setTextViewText(R.id.widget_item_name, itemList[position].name)
+            setTextViewText(R.id.widget_item_expr, itemList[position].expiration.toString())
         }
     }
 
