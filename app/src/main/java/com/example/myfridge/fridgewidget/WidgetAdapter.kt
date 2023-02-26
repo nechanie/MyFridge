@@ -2,6 +2,8 @@ package com.example.myfridge.fridgewidget
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,6 +81,16 @@ class ListRemoteViewsFactory(
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
             setTextViewText(R.id.widget_item_name, itemList[position].name)
             setTextViewText(R.id.widget_item_expr, itemList[position].expiration.toString())
+            val fillInIntent = Intent().apply {
+                Bundle().also { extras ->
+                    extras.putInt(EXTRA_ITEM, position)
+                    putExtras(extras)
+                }
+            }
+            // Make it possible to distinguish the individual on-click
+            // action of a given item.
+            Log.d("getViewAt", "Was Executed")
+            setOnClickFillInIntent(R.id.widget_item_name, fillInIntent)
         }
     }
 

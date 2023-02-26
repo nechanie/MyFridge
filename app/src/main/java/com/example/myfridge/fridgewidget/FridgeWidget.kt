@@ -1,20 +1,29 @@
 package com.example.myfridge.fridgewidget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.RemoteViews
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.example.myfridge.MainActivity
 import com.example.myfridge.R
 
 /**
  * Implementation of App Widget functionality.
  */
+const val TOAST_ACTION = "com.example.myfridge.TOAST_ACTION"
+const val EXTRA_ITEM = "com.example.myfridge.EXTRA_ITEM"
+
 class FridgeWidget : AppWidgetProvider() {
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
@@ -42,6 +51,22 @@ class FridgeWidget : AppWidgetProvider() {
                 // RemoteViews object.
                 setEmptyView(R.id.widget_listView, R.id.empty_view)
             }
+
+            val toastPendingIntent: PendingIntent = Intent(
+                context,
+                MainActivity::class.java
+            ).run {
+                // Set the action for the intent.
+                // When the user touches a particular view, it has the effect of
+                // broadcasting TOAST_ACTION.
+                action = TOAST_ACTION
+                putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+                data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
+                Log.d("PendingIntent", "Was Executed")
+                PendingIntent.getActivity(context, 0, this, PendingIntent.FLAG_UPDATE_CURRENT)
+            }
+            Log.d("PendingIntent", "Was Executed2")
+            views.setPendingIntentTemplate(R.id.widget_listView, toastPendingIntent)
 
             // Do additional processing specific to this widget.
 
