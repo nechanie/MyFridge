@@ -1,22 +1,20 @@
 package com.example.myfridge
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myfridge.databinding.ActivityMainWithNavDrawerBinding
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivityWithNavDrawer : AppCompatActivity() {
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainWithNavDrawerBinding
 
