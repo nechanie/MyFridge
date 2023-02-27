@@ -12,14 +12,21 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.myfridge.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_recipes"
+        android:name="com.example.myfridge.ui.recipes.RecipesFragment"
+        android:label="@string/menu_recipes"
+        tools:layout="@layout/fragment_recipes" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.myfridge.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_shopping"
+        android:name="com.example.myfridge.ui.shopping.ShoppingFragment"
+        android:label="@string/menu_shopping"
+        tools:layout="@layout/fragment_shopping" />
+    <fragment
+        android:id="@+id/nav_expiring"
+        android:name="com.example.myfridge.ui.expiring.ExpiringFragment"
+        android:label="@string/menu_expiring"
+        tools:layout="@layout/fragment_expiring"/>
+
+
 </navigation>

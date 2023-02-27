@@ -9,13 +9,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar"
+        android:theme="@style/Theme.MyFridge.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivityWithNavDrawer"
-            android:exported="false"
-            android:label="@string/title_activity_main_with_nav_drawer"
-            android:theme="@style/Theme.MyFridge.NoActionBar" />
 
         <service
             android:name=".fridgewidget.ListService"
@@ -32,7 +27,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/fridge_widget_info" />
         </receiver>
-
+        <activity android:name=".ui.settings.SettingsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
