@@ -1,9 +1,10 @@
-package com.example.myfridge
+package com.example.myfridge.ui.recipes
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfridge.R
 import com.example.myfridge.data.RecipeItems
 
 class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
