@@ -3,6 +3,7 @@ package com.example.myfridge
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
@@ -73,13 +74,24 @@ class MainActivity : AppCompatActivity() {
             findNavController(R.id.nav_host_fragment_content_main_activity)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
+    override fun onStart() {
+        Log.d("OnStart", "Main Activity went through OnStart")
+        super.onStart()
+    }
+    override fun onRestart() {
+        Log.d("OnRestart", "Main Activity went through OnRestart")
+        super.onRestart()
+    }
+    override fun onStop() {
+        Log.d("OnStop", "Main Activity was Stopped")
+        super.onStop()
+    }
     override fun onPause() {
+        Log.d("onPause", "Main Activity was paused")
         super.onPause()
-        supportFragmentManager.saveBackStack("mainActivity")
     }
     override fun onResume() {
         super.onResume()
-        supportFragmentManager.restoreBackStack("mainActivity")
     }
+
 }

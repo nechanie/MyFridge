@@ -9,12 +9,15 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-
+    private lateinit var homeAdapter: HomeAdapter
+    private lateinit var homeRv: RecyclerView
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -32,10 +35,14 @@ class HomeFragment : Fragment() {
 
 
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        homeRv = binding.rvHome
+        homeRv.layoutManager = LinearLayoutManager(container?.context)
+        homeAdapter = HomeAdapter()
+        homeRv.adapter = homeAdapter
+        homeViewModel.fridgeContent.observe(viewLifecycleOwner) {
+            homeAdapter.updateHomeList(it)
         }
+        homeViewModel.loadFridgeContent()
         return root
     }
 
