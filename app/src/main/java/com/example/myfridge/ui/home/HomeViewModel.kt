@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myfridge.data.home.FridgeContent
-import com.example.myfridge.data.home.FridgeItemInfo
+import com.example.myfridge.data.fridge.FridgeContent
+import com.example.myfridge.data.fridge.FridgeItemInfo
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
     fun loadFridgeContent(){
 
         val tempContent: FridgeContent
-        val tempList: MutableList<FridgeItemInfo> = mutableListOf<FridgeItemInfo>()
+        val tempList: MutableList<FridgeItemInfo> = mutableListOf()
         tempList.add(FridgeItemInfo("Image 1", "Name/Description 1", "Expiration 1"))
         tempList.add(FridgeItemInfo("Image 2", "Name/Description 2", "Expiration 2"))
         tempList.add(FridgeItemInfo("Image 3", "Name/Description 3", "Expiration 3"))

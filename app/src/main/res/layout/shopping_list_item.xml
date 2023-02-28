@@ -16,7 +16,7 @@
         android:layout_margin="4dp"
         android:orientation="horizontal">
         <TextView
-            android:id="@+id/recipe_item_name"
+            android:id="@+id/shopping_item_name"
             android:textSize="20sp"
             android:textColor="@color/light_blue_200"
             android:layout_gravity="center"

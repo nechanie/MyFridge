@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.databinding.FragmentShoppingBinding
+import com.example.myfridge.ui.home.HomeAdapter
+import com.example.myfridge.ui.recipes.ShoppingAdapter
 
 class ShoppingFragment : Fragment() {
 
     private var _binding: FragmentShoppingBinding? = null
+    private lateinit var shoppingAdapter: ShoppingAdapter
+    private lateinit var shoppingRv: RecyclerView
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,10 +34,14 @@ class ShoppingFragment : Fragment() {
         _binding = FragmentShoppingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textShopping
-        shoppingViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        shoppingRv = binding.rvShopping
+        shoppingRv.layoutManager = LinearLayoutManager(container?.context)
+        shoppingAdapter = ShoppingAdapter()
+        shoppingRv.adapter = shoppingAdapter
+        shoppingViewModel.shoppingList.observe(viewLifecycleOwner) {
+            shoppingAdapter.updateShoppingList(it)
         }
+        shoppingViewModel.loadShoppingList()
         return root
     }
 

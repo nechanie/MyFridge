@@ -6,8 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.shopping.ShoppingFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_shopping"/>
     <TextView
-        android:id="@+id/text_shopping"
+        android:id="@+id/empty_shopping"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
