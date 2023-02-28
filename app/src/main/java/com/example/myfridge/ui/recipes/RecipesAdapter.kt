@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
-import com.example.myfridge.data.RecipeItems
+import com.example.myfridge.data.recipes.RecipeItems
 
 class RecipesAdapter: RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
     var recipesList = listOf<RecipeItems>()

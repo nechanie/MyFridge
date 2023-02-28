@@ -1,4 +1,4 @@
-package com.example.myfridge.data
+package com.example.myfridge.data.recipes
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

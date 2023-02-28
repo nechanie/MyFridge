@@ -1,6 +1,6 @@
 package com.example.myfridge.api
 
-import com.example.myfridge.data.RecipeResults
+import com.example.myfridge.data.recipes.RecipeResults
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.Call
 import retrofit2.Retrofit
