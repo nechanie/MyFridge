@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfridge.R
 import com.example.myfridge.data.recipes.RecipeItem
-import com.example.myfridge.databinding.FragmentAddFoodBinding
+import com.example.myfridge.databinding.AddFoodBinding
+
 
 class AddFoodFragment : Fragment() {
-    private var _binding: FragmentAddFoodBinding? = null
+    private var _binding: AddFoodBinding? = null
     private lateinit var editName: EditText
     private lateinit var editExpiration: EditText
 
@@ -28,7 +29,7 @@ class AddFoodFragment : Fragment() {
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentAddFoodBinding.inflate(inflater, container, false)
+        _binding = AddFoodBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         //val recipe = this.requireArguments().getSerializable("recipe") as RecipeItem
