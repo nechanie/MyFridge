@@ -1,15 +1,18 @@
 package com.example.myfridge
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import com.example.myfridge.databinding.ActivityMainBinding
+import com.example.myfridge.ui.home.AddFoodFragment
 import com.example.myfridge.ui.settings.SettingsActivity
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -68,6 +71,20 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_activity, menu)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_add_fridge_item -> {
+                val navController =
+                    findNavController(R.id.nav_host_fragment_content_main_activity)
+
+                navController.navigate(R.id.add_food)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController =
