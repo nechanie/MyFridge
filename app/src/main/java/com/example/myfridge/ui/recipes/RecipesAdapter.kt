@@ -1,5 +1,6 @@
 package com.example.myfridge.ui.recipes
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,15 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
 import com.example.myfridge.data.recipes.RecipeItem
-import com.example.myfridge.data.recipes.RecipeResults
 
 class RecipesAdapter(private val onClickFunc: (RecipeItem) -> Unit): RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
     var recipesList = listOf<RecipeItem>()
 
     override fun getItemCount() = recipesList.size
 
-    fun updateRecipesList(recipes: RecipeResults?) {
-        recipesList = recipes?.list ?: listOf()
+    fun updateRecipesList(recipes: List<RecipeItem>?) {
+        recipesList = recipes ?: listOf()
         notifyDataSetChanged()
     }
 
@@ -31,7 +31,8 @@ class RecipesAdapter(private val onClickFunc: (RecipeItem) -> Unit): RecyclerVie
 
     class ViewHolder(view: View, private val onClickFunc: (RecipeItem) -> Unit) : RecyclerView.ViewHolder(view) {
         private var recipeName: TextView = view.findViewById(R.id.recipe_item_name)
-        private var currentRecipeItem: RecipeItem? = null
+
+        private lateinit var currentRecipeItem: RecipeItem
 
         init {
             view.setOnClickListener { currentRecipeItem?.let(onClickFunc) }

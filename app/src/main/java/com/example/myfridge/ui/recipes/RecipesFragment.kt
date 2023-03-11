@@ -1,14 +1,11 @@
 package com.example.myfridge.ui.recipes
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.os.bundleOf
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesBinding
-import com.example.myfridge.ui.home.HomeAdapter
+import com.example.myfridge.BuildConfig
+
+
+// Keeping our API key safe
+const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY
 
 class RecipesFragment : Fragment() {
 
@@ -44,9 +45,15 @@ class RecipesFragment : Fragment() {
         recipesAdapter = RecipesAdapter(::forwardDetailedRecipe)
         recipesRv.adapter = recipesAdapter
         recipesViewModel.recipes.observe(viewLifecycleOwner) {
-            recipesAdapter.updateRecipesList(it)
+            recipes -> recipesAdapter.updateRecipesList(recipes)
         }
-        recipesViewModel.loadRecipeResults()
+
+        val searchButton : Button = root.findViewById(R.id.searchRecipesButton)
+        searchButton.setOnClickListener {
+            searchRecipe(recipesViewModel)
+        }
+
+
         return root
     }
 
@@ -63,4 +70,9 @@ class RecipesFragment : Fragment() {
         navController?.navigate(R.id.action_nav_recipes_to_recipesDetailedFragment, bundle)
         return
     }
+
+}
+
+fun searchRecipe(viewModel: RecipesViewModel) {
+    viewModel.loadRecipeResults(SPOONACULAR_APPID)
 }
