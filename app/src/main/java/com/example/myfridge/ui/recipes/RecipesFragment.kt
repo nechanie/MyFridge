@@ -10,19 +10,22 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.BuildConfig
 import com.example.myfridge.R
+import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesBinding
+import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
 
 const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY
 class RecipesFragment : Fragment() {
-
+    private val databaseViewModel: DatabaseViewModel.APICallInfoViewModel by viewModels()
     private var _binding: FragmentRecipesBinding? = null
     private lateinit var recipesAdapter: RecipesAdapter
     private lateinit var recipesRv: RecyclerView
@@ -57,7 +60,9 @@ class RecipesFragment : Fragment() {
     }
 
     fun searchRecipe(viewModel: RecipesViewModel) {
-        viewModel.loadRecipeResults(SPOONACULAR_APPID)
+        val ingredients = "potatoes"
+        databaseViewModel.addAPICallInfo(APICallInfo(ingredients, System.currentTimeMillis()))
+        viewModel.loadRecipeResults(SPOONACULAR_APPID, ingredients)
     }
     override fun onDestroyView() {
         super.onDestroyView()

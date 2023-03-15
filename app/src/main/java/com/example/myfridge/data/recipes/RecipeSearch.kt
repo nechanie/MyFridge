@@ -9,10 +9,10 @@ class RecipeSearch (
     private val service: RecipesService,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
-    suspend fun loadRecipeSearch(appid: String): Result<List<RecipeItem>?> =
+    suspend fun loadRecipeSearch(appid: String, ingredients:String): Result<List<RecipeItem>?> =
         withContext(dispatcher) {
             try {
-                val response = service.getRecipesData(appid)
+                val response = service.getRecipesData(appid, ingredients)
                 if (response.isSuccessful) {
                     Result.success(response.body())
                 } else {
