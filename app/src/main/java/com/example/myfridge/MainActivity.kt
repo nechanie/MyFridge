@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 val navController =
                     findNavController(R.id.nav_host_fragment_content_main_activity)
 
-                navController.navigate(R.id.add_food)
+                navController.navigate(R.id.addFoodFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
