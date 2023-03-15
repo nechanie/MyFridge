@@ -15,9 +15,9 @@ class RecipesViewModel : ViewModel() {
     private val _recipes = MutableLiveData<RecipeResults?>()
     val recipes: LiveData<RecipeResults?> = _recipes
 
-    fun loadRecipeResults(appid: String){
+    fun loadRecipeResults(appid: String, ingredients: String){
         viewModelScope.launch {
-            _recipes.value = RecipeResults(recipe.loadRecipeSearch(appid).getOrNull())
+            _recipes.value = RecipeResults(recipe.loadRecipeSearch(appid, ingredients).getOrNull())
         }
     }
 }
