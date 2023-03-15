@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.example.myfridge.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_addFoodFragment"
+            app:destination="@id/addFoodFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_recipes"
@@ -35,6 +39,10 @@
         android:id="@+id/recipesDetailedFragment"
         android:name="com.example.myfridge.ui.recipes.RecipesDetailedFragment"
         android:label="RecipesDetailedFragment" />
+    <fragment
+        android:id="@+id/addFoodFragment"
+        android:name="com.example.myfridge.ui.home.AddFoodFragment"
+        android:label="AddFoodFragment" />
 
 
 </navigation>
