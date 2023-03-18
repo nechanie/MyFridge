@@ -15,7 +15,9 @@ import com.example.myfridge.databinding.AddFoodBinding
 class AddFoodFragment : Fragment() {
     private var _binding: AddFoodBinding? = null
     private lateinit var editName: EditText
-    private lateinit var editExpiration: EditText
+    private lateinit var editExpirationDay: EditText
+    private lateinit var editExpirationMonth: EditText
+    private lateinit var editExpirationYear: EditText
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -42,11 +44,15 @@ class AddFoodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         editName = view.findViewById(R.id.editName)
-        editExpiration = view.findViewById(R.id.editExpiration)
+        editExpirationDay = view.findViewById(R.id.editDay)
+        editExpirationMonth = view.findViewById(R.id.editMonth)
+        editExpirationYear = view.findViewById(R.id.editYear)
 
 
         //This will save the value they enter. we can then create a food out of it
         val name = editName.text.toString()
-        val expiration = editExpiration.text.toString()
+        val expirationDay = editExpirationDay.text.toString()
+        val expirationMonth = editExpirationMonth.text.toString()
+        val expirationYear = editExpirationYear.text.toString()
     }
 }
