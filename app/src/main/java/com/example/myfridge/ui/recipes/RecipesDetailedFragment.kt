@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesDetailedBinding
-import com.example.myfridge.ui.home.HomeViewModel
 
 class RecipesDetailedFragment: Fragment() {
     private val args: RecipesDetailedFragmentArgs by navArgs()

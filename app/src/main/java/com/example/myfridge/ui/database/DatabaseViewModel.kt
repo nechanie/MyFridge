@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.database.AppDatabase
 import com.example.myfridge.data.database.DatabaseRepository
+import com.example.myfridge.data.database.FridgeItemInfo
 import kotlinx.coroutines.launch
 
 
@@ -41,4 +42,32 @@ class DatabaseViewModel {
 
         fun getAPICallInfo(callInfo: String) = repository.getAPICallInfo(callInfo).asLiveData()
     }
+
+    class FridgeItemInfoViewModel(application: Application): AndroidViewModel(application){
+        private val repository = DatabaseRepository.FridgeItemInfoRepository(
+            AppDatabase.getInstance(application).fridgeItemInfoDao()
+        )
+        val fridgeItemInfoAll: LiveData<List<FridgeItemInfo>?> = repository.getAllFridgeItems.asLiveData()
+
+        fun addFridgeItemInfo(fridgeItem: FridgeItemInfo){
+            viewModelScope.launch{
+                repository.insertFridgeItemInfo(fridgeItem)
+            }
+        }
+
+        fun deleteFridgeItemInfo(fridgeItem: FridgeItemInfo){
+            viewModelScope.launch{
+                repository.deleteFridgeItemInfo(fridgeItem)
+            }
+        }
+
+        fun updateFridgeItemInfo(fridgeItem: FridgeItemInfo){
+            viewModelScope.launch{
+                repository.updateFridgeItemInfo(fridgeItem)
+            }
+        }
+
+        fun getFridgeItemInfo(fridgeInfo: String) = repository.getFridgeItemInfo(fridgeInfo).asLiveData()
+    }
+
 }

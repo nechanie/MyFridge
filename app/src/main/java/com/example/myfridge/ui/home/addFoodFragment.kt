@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.myfridge.R
-import com.example.myfridge.data.recipes.RecipeItem
+import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.databinding.AddFoodBinding
+import com.example.myfridge.ui.database.DatabaseViewModel
 
 class AddFoodFragment : Fragment() {
+    private val viewModel: DatabaseViewModel.FridgeItemInfoViewModel by viewModels()
     private var _binding: AddFoodBinding? = null
     private lateinit var editName: EditText
     private lateinit var editExpirationDay: EditText
@@ -27,12 +29,9 @@ class AddFoodFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         _binding = AddFoodBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        viewModel.addFridgeItemInfo(FridgeItemInfo("","Apple","3/20/2023"))
         //val recipe = this.requireArguments().getSerializable("recipe") as RecipeItem
 
         return root

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
+import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
-import com.example.myfridge.data.fridge.FridgeItemInfo
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     var homeList: List<FridgeItemInfo> = listOf()

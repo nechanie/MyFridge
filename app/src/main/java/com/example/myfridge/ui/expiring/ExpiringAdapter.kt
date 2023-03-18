@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
 import com.example.myfridge.data.fridge.FridgeContent
-import com.example.myfridge.data.fridge.FridgeItemInfo
+import com.example.myfridge.data.database.FridgeItemInfo
 
 class ExpiringAdapter : RecyclerView.Adapter<ExpiringAdapter.ViewHolder>(){
     var expiringList: List<FridgeItemInfo> = listOf()

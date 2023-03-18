@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myfridge.data.fridge.FridgeContent
-import com.example.myfridge.data.fridge.FridgeItemInfo
+import com.example.myfridge.data.database.FridgeItemInfo
 import kotlinx.coroutines.launch
 
 class ExpiringViewModel : ViewModel() {

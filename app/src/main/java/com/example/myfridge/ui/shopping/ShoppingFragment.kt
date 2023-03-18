@@ -32,13 +32,6 @@ class ShoppingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (activity as ActionBar).addTab(object:ActionBar.Tab())
-        (activity as MenuHost).addMenuProvider(object:MenuProvider{
-            override fun onPrepareMenu(menu: Menu) {
-                super.onPrepareMenu(menu)
-                menu.
-            }
-        })
         val shoppingViewModel =
             ViewModelProvider(this).get(ShoppingViewModel::class.java)
 
