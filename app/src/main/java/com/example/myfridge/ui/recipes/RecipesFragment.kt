@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.BuildConfig
@@ -70,11 +71,8 @@ class RecipesFragment : Fragment() {
     }
 
     private fun forwardDetailedRecipe(recipe: RecipeItem){
-        val navController = this.activity?.findNavController(R.id.nav_host_fragment_content_main_activity)
-        val bundle: Bundle = Bundle().apply {
-            putSerializable("recipe", recipe)
-        }
-        navController?.navigate(R.id.action_nav_recipes_to_recipesDetailedFragment, bundle)
+        val directions = RecipesFragmentDirections.actionNavRecipesToRecipesDetailedFragment(recipe)
+        findNavController().navigate(directions)
         return
     }
 }

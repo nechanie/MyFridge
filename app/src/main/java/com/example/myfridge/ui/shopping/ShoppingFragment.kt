@@ -1,10 +1,14 @@
 package com.example.myfridge.ui.shopping
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +32,13 @@ class ShoppingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as ActionBar).addTab(object:ActionBar.Tab())
+        (activity as MenuHost).addMenuProvider(object:MenuProvider{
+            override fun onPrepareMenu(menu: Menu) {
+                super.onPrepareMenu(menu)
+                menu.
+            }
+        })
         val shoppingViewModel =
             ViewModelProvider(this).get(ShoppingViewModel::class.java)
 

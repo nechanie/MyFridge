@@ -38,7 +38,11 @@
     <fragment
         android:id="@+id/recipesDetailedFragment"
         android:name="com.example.myfridge.ui.recipes.RecipesDetailedFragment"
-        android:label="RecipesDetailedFragment" />
+        android:label="RecipesDetailedFragment">
+        <argument
+            android:name="recipe"
+            app:argType="com.example.myfridge.data.recipes.RecipeItem"/>
+    </fragment>
     <fragment
         android:id="@+id/addFoodFragment"
         android:name="com.example.myfridge.ui.home.AddFoodFragment"

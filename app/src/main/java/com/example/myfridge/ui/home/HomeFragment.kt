@@ -2,15 +2,20 @@ package com.example.myfridge.ui.home
 
 import android.content.ClipData.Item
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfridge.R
 import com.example.myfridge.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -27,6 +32,23 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        (activity as MenuHost).addMenuProvider(object: MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater){
+                menuInflater.inflate(R.menu.main_activity, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId){
+                    R.id.action_add_fridge_item -> {
+                        val destination = HomeFragmentDirections.actionNavHomeToAddFoodFragment()
+                        findNavController().navigate(destination)
+                        true
+                    }
+                    else -> (activity as AppCompatActivity).onOptionsItemSelected(menuItem)
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
