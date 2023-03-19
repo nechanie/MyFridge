@@ -22,13 +22,13 @@ import kotlinx.coroutines.flow.toSet
 
 
 class WidgetAdapter:BaseAdapter() {
-    private var itemList : MutableList<FoodItem> = mutableListOf()
+    private var itemList : MutableList<FridgeItemInfo> = mutableListOf()
 
     override fun getCount(): Int = itemList.size
 
-    override fun getItem(p0: Int): FoodItem = itemList[p0]
+    override fun getItem(p0: Int): FridgeItemInfo = itemList[p0]
 
-    override fun getItemId(p0: Int): Long = itemList[p0].id
+    override fun getItemId(p0: Int): Long = p0.toLong()
 
     override fun getView(position: Int, convertView: View?, container: ViewGroup?): View {
         var newView: TextView
@@ -39,7 +39,7 @@ class WidgetAdapter:BaseAdapter() {
         else{
             newView = convertView.findViewById(R.id.widget_listView)
         }
-        val currentItem: FoodItem = getItem(position)
+        val currentItem: FridgeItemInfo = getItem(position)
         newView.text = currentItem.name
         return newView;
     }
