@@ -13,12 +13,19 @@ import android.widget.RemoteViewsService
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
+import androidx.preference.PreferenceManager
 import com.example.myfridge.R
 import com.example.myfridge.data.database.AppDatabase
 import com.example.myfridge.data.database.DatabaseDAO
 import com.example.myfridge.data.database.DatabaseRepository
 import com.example.myfridge.data.database.FridgeItemInfo
 import kotlinx.coroutines.flow.toSet
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class WidgetAdapter:BaseAdapter() {
@@ -70,7 +77,10 @@ class ListRemoteViewsFactory(
         databaseRepository = DatabaseRepository.FridgeItemInfoRepository(fridgeItemDAO.fridgeItemInfoDao())
     }
     override fun onCreate() {
-        allFridgeItems = databaseRepository.getAllFridgeItems.asLiveData()
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val prefDays = prefs.getString(context.getString(R.string.pref_expiration_key), "7")
+        val expDate = LocalDateTime.now().plusDays(Integer.parseInt(prefDays!!).toLong()).toInstant(ZoneOffset.UTC).toEpochMilli()
+        allFridgeItems = databaseRepository.getExpiringSoon(expDate).asLiveData()
         allFridgeItems.observeForever{
             itemList.clear()
             itemList.addAll(it.orEmpty())
@@ -94,7 +104,8 @@ class ListRemoteViewsFactory(
     override fun getViewAt(position: Int): RemoteViews {
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
             setTextViewText(R.id.widget_item_name, itemList[position].name)
-            setTextViewText(R.id.widget_item_expr, itemList[position].exp)
+
+            setTextViewText(R.id.widget_item_expr, SimpleDateFormat("MM/dd/yyyy").format(Date(itemList[position].exp)))
             val fillInIntent = Intent().apply {
                 Bundle().also { extras ->
                     extras.putInt(EXTRA_ITEM, position)

@@ -47,6 +47,10 @@
         android:id="@+id/addFoodFragment"
         android:name="com.example.myfridge.ui.home.AddFoodFragment"
         android:label="AddFoodFragment" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.example.myfridge.ui.settings.SettingsActivity"
+        android:label="SettingsActivity" />
 
 
 </navigation>

@@ -67,6 +67,7 @@ class DatabaseViewModel {
             }
         }
 
+        fun getExpiringSoon(soonDate:Long) = repository.getExpiringSoon(soonDate).asLiveData()
         fun getFridgeItemInfo(fridgeInfo: String) = repository.getFridgeItemInfo(fridgeInfo).asLiveData()
     }
 

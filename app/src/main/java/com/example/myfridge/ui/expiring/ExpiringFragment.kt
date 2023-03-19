@@ -2,20 +2,24 @@ package com.example.myfridge.ui.expiring
 
 import android.os.Bundle
 import android.view.*
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
+import com.example.myfridge.data.fridge.FridgeContent
 import com.example.myfridge.databinding.FragmentExpiringBinding
+import com.example.myfridge.ui.database.DatabaseViewModel
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class ExpiringFragment: Fragment() {
     private var _binding: FragmentExpiringBinding? = null
     private lateinit var expiringAdapter: ExpiringAdapter
     private lateinit var expiringRv: RecyclerView
+    private val viewModel: DatabaseViewModel.FridgeItemInfoViewModel by viewModels()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -25,20 +29,20 @@ class ExpiringFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val expiringViewModel =
-            ViewModelProvider(this).get(ExpiringViewModel::class.java)
 
         _binding = FragmentExpiringBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        val prefs = PreferenceManager.getDefaultSharedPreferences((activity as AppCompatActivity))
+        val prefDays = prefs.getString((activity as AppCompatActivity).getString(R.string.pref_expiration_key), "7")
+        val expDate = LocalDateTime.now().plusDays(Integer.parseInt(prefDays!!).toLong()).toInstant(
+            ZoneOffset.UTC).toEpochMilli()
         expiringRv = binding.rvExpiring
         expiringRv.layoutManager = LinearLayoutManager(container?.context)
         expiringAdapter = ExpiringAdapter()
         expiringRv.adapter = expiringAdapter
-        expiringViewModel.expiringContent.observe(viewLifecycleOwner){
-            expiringAdapter.updateExpiringList(it)
+        viewModel.getExpiringSoon(expDate).observe(viewLifecycleOwner){
+            expiringAdapter.updateExpiringList(FridgeContent(it.orEmpty()))
         }
-        expiringViewModel.loadExpiringContent()
         return root
     }
 
