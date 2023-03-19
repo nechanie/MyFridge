@@ -58,7 +58,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
 
-
         homeRv = binding.rvHome
         homeRv.layoutManager = LinearLayoutManager(container?.context)
         homeAdapter = HomeAdapter()

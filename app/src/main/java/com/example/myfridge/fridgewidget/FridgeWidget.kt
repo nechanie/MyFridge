@@ -13,8 +13,13 @@ import android.widget.ListView
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.example.myfridge.MainActivity
 import com.example.myfridge.R
+import com.example.myfridge.data.database.AppDatabase
+import com.example.myfridge.data.database.DatabaseRepository
+import com.example.myfridge.data.database.FridgeItemInfo
 
 /**
  * Implementation of App Widget functionality.
@@ -23,12 +28,22 @@ const val TOAST_ACTION = "com.example.myfridge.TOAST_ACTION"
 const val EXTRA_ITEM = "com.example.myfridge.EXTRA_ITEM"
 
 class FridgeWidget : AppWidgetProvider() {
-
+    private lateinit var databaseRepository: DatabaseRepository.FridgeItemInfoRepository
+    private lateinit var allFridgeItems: LiveData<List<FridgeItemInfo>?>
+    private lateinit var fridgeItemDAO : AppDatabase
+    private var itemList : MutableList<FridgeItemInfo> = mutableListOf()
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        fridgeItemDAO = AppDatabase.getInstance(context)
+        databaseRepository = DatabaseRepository.FridgeItemInfoRepository(fridgeItemDAO.fridgeItemInfoDao())
+        allFridgeItems = databaseRepository.getAllFridgeItems.asLiveData()
+        allFridgeItems.observeForever{
+            itemList.clear()
+            itemList.addAll(it.orEmpty())
+        }
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             // Set up the intent that starts the StackViewService, which

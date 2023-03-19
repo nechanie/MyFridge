@@ -11,7 +11,14 @@ import android.widget.BaseAdapter
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import android.widget.TextView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.example.myfridge.R
+import com.example.myfridge.data.database.AppDatabase
+import com.example.myfridge.data.database.DatabaseDAO
+import com.example.myfridge.data.database.DatabaseRepository
+import com.example.myfridge.data.database.FridgeItemInfo
+import kotlinx.coroutines.flow.toSet
 
 
 class WidgetAdapter:BaseAdapter() {
@@ -54,21 +61,28 @@ class ListRemoteViewsFactory(
 
 // See the RemoteViewsFactory API reference for the full list of methods to
 // implement.
-    private var itemList : MutableList<FoodItem> = mutableListOf()
+    private var databaseRepository: DatabaseRepository.FridgeItemInfoRepository
+    private lateinit var allFridgeItems: LiveData<List<FridgeItemInfo>?>
+    private var fridgeItemDAO = AppDatabase.getInstance(context)
+    private var itemList : MutableList<FridgeItemInfo> = mutableListOf()
+
+    init {
+        databaseRepository = DatabaseRepository.FridgeItemInfoRepository(fridgeItemDAO.fridgeItemInfoDao())
+    }
     override fun onCreate() {
-        itemList.add(FoodItem(1234141, "something1", 123))
-        itemList.add(FoodItem(1234142, "something2", 123))
-        itemList.add(FoodItem(1234143, "something3", 123))
-        itemList.add(FoodItem(1234144, "something4", 123))
-        itemList.add(FoodItem(1234145, "something5", 123))
-        itemList.add(FoodItem(1234146, "something6", 123))
-        itemList.add(FoodItem(1234147, "something7", 123))
-        itemList.add(FoodItem(1234148, "something8", 123))
-        itemList.add(FoodItem(12341429, "something9", 123))
+        allFridgeItems = databaseRepository.getAllFridgeItems.asLiveData()
+        allFridgeItems.observeForever{
+            itemList.clear()
+            itemList.addAll(it.orEmpty())
+            onDataSetChanged()
+        }
     }
 
     override fun onDataSetChanged() {
-        return
+        allFridgeItems = databaseRepository.getAllFridgeItems.asLiveData()
+        if (allFridgeItems.value.orEmpty().isNotEmpty()){
+            getViewAt(0)
+        }
     }
 
     override fun onDestroy() {
@@ -80,7 +94,7 @@ class ListRemoteViewsFactory(
     override fun getViewAt(position: Int): RemoteViews {
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
             setTextViewText(R.id.widget_item_name, itemList[position].name)
-            setTextViewText(R.id.widget_item_expr, itemList[position].expiration.toString())
+            setTextViewText(R.id.widget_item_expr, itemList[position].exp)
             val fillInIntent = Intent().apply {
                 Bundle().also { extras ->
                     extras.putInt(EXTRA_ITEM, position)
@@ -103,7 +117,7 @@ class ListRemoteViewsFactory(
     }
 
     override fun getItemId(position: Int): Long {
-        return itemList[position].id
+        return position.toLong()
     }
 
     override fun hasStableIds(): Boolean {
