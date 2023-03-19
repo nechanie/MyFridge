@@ -56,15 +56,15 @@ class ListRemoteViewsFactory(
 // implement.
     private var itemList : MutableList<FoodItem> = mutableListOf()
     override fun onCreate() {
-        itemList.add(FoodItem(1234141, "something1", 123))
-        itemList.add(FoodItem(1234142, "something2", 123))
-        itemList.add(FoodItem(1234143, "something3", 123))
-        itemList.add(FoodItem(1234144, "something4", 123))
-        itemList.add(FoodItem(1234145, "something5", 123))
-        itemList.add(FoodItem(1234146, "something6", 123))
-        itemList.add(FoodItem(1234147, "something7", 123))
-        itemList.add(FoodItem(1234148, "something8", 123))
-        itemList.add(FoodItem(12341429, "something9", 123))
+//        itemList.add(FoodItem(1234141, "something1", 123))
+//        itemList.add(FoodItem(1234142, "something2", 123))
+//        itemList.add(FoodItem(1234143, "something3", 123))
+//        itemList.add(FoodItem(1234144, "something4", 123))
+//        itemList.add(FoodItem(1234145, "something5", 123))
+//        itemList.add(FoodItem(1234146, "something6", 123))
+//        itemList.add(FoodItem(1234147, "something7", 123))
+//        itemList.add(FoodItem(1234148, "something8", 123))
+//        itemList.add(FoodItem(12341429, "something9", 123))
     }
 
     override fun onDataSetChanged() {

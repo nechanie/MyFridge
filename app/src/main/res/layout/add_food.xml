@@ -9,8 +9,7 @@
         android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_food"
-        />
+        android:hint="@string/edit_food" />
 
     <LinearLayout
 
@@ -18,34 +17,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editDay"
-            android:layout_width="wrap_content"
+        <DatePicker
+            android:id="@+id/editDate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/day"
-            android:inputType="number"
-            android:maxLines="1"
-            />
-
-        <EditText
-            android:id="@+id/editMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/month"
-            android:inputType="number"
-            android:maxLines="1"
-            android:layout_marginStart="8dp"/>
-
-        <EditText
-            android:id="@+id/editYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/year"
-            android:inputType="number"
-            android:maxLines="1"
-            android:layout_marginStart="8dp"/>
+            android:hint="Date"
+            android:layout_gravity="center_horizontal"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Submit"
+        />
 
 </LinearLayout>
 

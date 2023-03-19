@@ -1,3 +1,6 @@
 package com.example.myfridge.fridgewidget
 
-data class FoodItem(val id: Long, val name:String, val expiration: Int)
+import android.widget.CalendarView
+import android.widget.DatePicker
+
+data class FoodItem(val id: Long, val name:String, val expiration: DatePicker)
