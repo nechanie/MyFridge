@@ -15,4 +15,22 @@ class DatabaseRepository {
 
         val getAPICallHistory = dao.queryAll()
     }
+
+    class FridgeItemInfoRepository(
+        private val dao: DatabaseDAO.FridgeItemInfoDAO
+    ){
+        suspend fun insertFridgeItemInfo(fridgeInfo:FridgeItemInfo) = dao.insert(fridgeInfo)
+
+        suspend fun deleteFridgeItemInfo(fridgeInfo:FridgeItemInfo) = dao.delete(fridgeInfo)
+
+        suspend fun updateFridgeItemInfo(fridgeInfo:FridgeItemInfo) = dao.update(fridgeInfo)
+
+        fun getFridgeItemInfo(fridgeItemName: String) = dao.query(fridgeItemName)
+
+        fun getExpiringSoon(soonDate:Long) = dao.expiringSoon(soonDate)
+
+        val getAllFridgeItems = dao.queryAll()
+    }
+
+
 }

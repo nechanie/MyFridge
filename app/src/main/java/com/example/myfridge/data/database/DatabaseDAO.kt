@@ -22,4 +22,25 @@ class DatabaseDAO{
         @Query("SELECT * FROM APICallInfo ORDER BY timestamp DESC")
         fun queryAll(): Flow<List<APICallInfo>?>
     }
+
+    @Dao
+    interface FridgeItemInfoDAO{
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insert(fridgeInfo: FridgeItemInfo)
+
+        @Delete
+        suspend fun delete(fridgeInfo: FridgeItemInfo)
+
+        @Update
+        suspend fun update(fridgeInfo: FridgeItemInfo)
+
+        @Query("SELECT * FROM FridgeItemInfo WHERE name = :name LIMIT 1")
+        fun query(name:String): Flow<FridgeItemInfo?>
+
+        @Query("SELECT * FROM FridgeItemInfo")
+        fun queryAll(): Flow<List<FridgeItemInfo>?>
+
+        @Query("SELECT * FROM FridgeItemInfo WHERE exp < :soonDate")
+        fun expiringSoon(soonDate:Long): Flow<List<FridgeItemInfo>?>
+    }
 }
