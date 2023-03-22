@@ -31,8 +31,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_recipes, R.id.nav_shopping, R.id.nav_expiring, R.id.settingsActivity
             ), drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        Log.d("stuff", navController.graph.getAction(R.id.action_nav_recipes_to_recipesDetailedFragment)?.destinationId.toString())
     }
 
 

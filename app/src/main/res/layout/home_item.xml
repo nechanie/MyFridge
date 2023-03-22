@@ -1,72 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="7dp"
+    android:layout_marginHorizontal="7dp"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layout_margin="3dp"
-    android:backgroundTint="@color/cardview_dark_background"
-    card_view:cardCornerRadius="7dp"
-    card_view:cardElevation="3dp">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:backgroundTint="#17525E"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="11dp"
+    android:id="@+id/item_card_view">
+    <com.daimajia.swipe.SwipeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        >
+        app:leftEdgeSwipeOffset="0dp"
+        app:rightEdgeSwipeOffset="0dp"
+        android:focusableInTouchMode="true"
+        android:id="@+id/swipe">
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height = "100dp"
+            android:id="@+id/button_container">
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    app:flexDirection="column">
+
+                    <Button
+                        android:id="@+id/to_list_button"
+                        style="@style/backgroundMenuButtonAddToList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:icon="@drawable/ic_add_shopping_item"
+                        />
+
+                    <Button
+                        android:id="@+id/delete_button"
+                        style="@style/backgroundMenuButtonDeleteFromList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:icon="@drawable/ic_trashcan"/>
+                </com.google.android.flexbox.FlexboxLayout>
+        </com.google.android.flexbox.FlexboxLayout>
     <LinearLayout
-        card_view:layout_constraintLeft_toLeftOf="parent"
-        card_view:layout_constraintBottom_toBottomOf="parent"
-        card_view:layout_constraintRight_toLeftOf="@+id/middleLL"
-        card_view:layout_constraintHorizontal_chainStyle="spread"
-        android:layout_width="90dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:flexDirection="row"
+        app:flexWrap="nowrap"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        >
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:flexDirection="row"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="25dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:gravity="start"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:id="@+id/leftLL">
+        android:id="@+id/leftLL"
+        app:layout_flexBasisPercent="33%">
 
         <ImageView
             android:id="@+id/home_item_img"
-            android:scaleType="fitCenter"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-    <LinearLayout
-        card_view:layout_constraintLeft_toRightOf="@+id/leftLL"
-        card_view:layout_constraintRight_toRightOf="@+id/rightLL"
-        card_view:layout_constraintBottom_toBottomOf="parent"        android:layout_width="wrap_content"
+            app:layout_constraintDimensionRatio="1"
+            android:layout_height="match_parent"
+            app:layout_constrainedHeight="true"
+            android:layout_gravity="end|center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.flexbox.FlexboxLayout
+        app:flexDirection="column"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:paddingLeft="3dp"
         android:paddingRight="3dp"
-        android:id="@+id/middleLL">
+        app:justifyContent="flex_start"
+        app:alignContent="stretch"
+        app:layout_flexBasisPercent="66%">
+
         <TextView
+            android:id="@+id/home_item_name"
             android:layout_width="match_parent"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:textColor="@color/light_blue_200"
-            android:layout_height="wrap_content"
-            android:id="@+id/home_item_name"/>
-    </LinearLayout>
-        <LinearLayout
-            card_view:layout_constraintLeft_toRightOf="@+id/middleLL"
-            card_view:layout_constraintRight_toRightOf="parent"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
-            android:id="@+id/rightLL">
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:paddingTop="5dp"
+            android:textSize="25sp"
+            android:fontFamily="@font/inika_regular"
+            android:letterSpacing="-0.02"
+            app:layout_flexBasisPercent="62.5%"
+            />
+
         <TextView
             android:id="@+id/home_item_expr"
-            android:textSize="20sp"
-            android:textColor="@color/light_blue_200"
-            android:textAlignment="center"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/inika_regular"
+            android:textFontWeight="300"
+            android:textSize="20sp"
+            android:letterSpacing="-0.01"
+            app:layout_flexBasisPercent="37.5%"
+
+            />
+    </com.google.android.flexbox.FlexboxLayout>
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+    </com.daimajia.swipe.SwipeLayout>
 </androidx.cardview.widget.CardView>
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginVertical="7dp"-->
+<!--        android:layout_marginHorizontal="7dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:backgroundTint="@color/light_blue_200"-->
+<!--        app:cardCornerRadius="7dp"-->
+<!--        app:cardElevation="10dp"-->
+<!--        android:id="@+id/item_menu_view">-->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/linearLayout4"-->
+<!--            app:layout_constraintStart_toStartOf="parent">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:src="@drawable/ic_shopping" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="2dp"-->
+
+<!--                android:text="Share"-->
+<!--                android:textColor="#ffffff" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout4"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/linearLayout2"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/linearLayout">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:src="@drawable/ic_home" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:text="Edit"-->
+<!--                android:textColor="#ffffff" />-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout2"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginEnd="30dp"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/linearLayout4">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:src="@drawable/ic_add" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:text="Delete"-->
+<!--                android:textColor="#ffffff" />-->
+<!--        </LinearLayout>-->
+<!--    </androidx.cardview.widget.CardView>-->
+<!--</RelativeLayout>-->
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
+<!--    android:layout_gravity="center"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="100dp"-->
+<!--    android:layout_margin="3dp"-->
+<!--    android:backgroundTint="@color/cardview_dark_background"-->
+<!--    card_view:cardCornerRadius="7dp"-->
+<!--    card_view:cardElevation="3dp">-->
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--    <LinearLayout-->
+<!--        card_view:layout_constraintLeft_toLeftOf="parent"-->
+<!--        card_view:layout_constraintBottom_toBottomOf="parent"-->
+<!--        card_view:layout_constraintRight_toLeftOf="@+id/middleLL"-->
+<!--        card_view:layout_constraintHorizontal_chainStyle="spread"-->
+<!--        android:layout_width="90dp"-->
+<!--        android:gravity="start"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:id="@+id/leftLL">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/home_item_img"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            />-->
+<!--    </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        card_view:layout_constraintLeft_toRightOf="@+id/leftLL"-->
+<!--        card_view:layout_constraintRight_toRightOf="@+id/rightLL"-->
+<!--        card_view:layout_constraintBottom_toBottomOf="parent"        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingLeft="3dp"-->
+<!--        android:paddingRight="3dp"-->
+<!--        android:id="@+id/middleLL">-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:textColor="@color/light_blue_200"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/home_item_name"/>-->
+<!--    </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            card_view:layout_constraintLeft_toRightOf="@+id/middleLL"-->
+<!--            card_view:layout_constraintRight_toRightOf="parent"-->
+<!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingLeft="3dp"-->
+<!--            android:paddingRight="3dp"-->
+<!--            android:id="@+id/rightLL">-->
+<!--        <TextView-->
+<!--            android:id="@+id/home_item_expr"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textColor="@color/light_blue_200"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        </LinearLayout>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--</androidx.cardview.widget.CardView>-->
