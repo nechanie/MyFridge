@@ -172,4 +172,5 @@ We suggest exploring the guide of our app content below:
 
 ## Our Team
 [@Nechanie](https://github.com/nechanie),
-[@METrimble](https://github.com/METrimble)
+[@METrimble](https://github.com/METrimble),
+[@Truongad](https://github.com/truongad)
