@@ -9,7 +9,6 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1A2330"
         android:foregroundTintMode="screen">
 
         <androidx.appcompat.widget.Toolbar
@@ -17,8 +16,7 @@
             app:titleTextColor="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#1A2330"
-            app:popupTheme="@style/Theme.MyFridge.PopupOverlay" />
+            app:popupTheme="@style/Theme.MyFridge.Support.Material3.NoActionBar.Dark" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

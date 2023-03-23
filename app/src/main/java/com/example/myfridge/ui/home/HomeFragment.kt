@@ -24,6 +24,7 @@ import com.example.myfridge.ui.database.DatabaseViewModel
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.mikepenz.materialdrawer.widget.MaterialDrawerSliderView
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter
@@ -38,7 +39,6 @@ class HomeFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -81,8 +81,10 @@ class HomeFragment : Fragment() {
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
             homeAdapter.updateHomeList(FridgeContent(it!!))
         }
+
         return root
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
