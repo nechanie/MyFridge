@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
         homeRv.layoutManager = LinearLayoutManager(container?.context)
         homeAdapter = HomeAdapter()
         homeRv.adapter = homeAdapter
+        //fridgeItemInfoAll contains the query all of the fridge database
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
             homeAdapter.updateHomeList(FridgeContent(it!!))
         }
