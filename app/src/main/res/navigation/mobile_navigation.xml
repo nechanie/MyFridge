@@ -29,7 +29,11 @@
         android:id="@+id/nav_shopping"
         android:name="com.example.myfridge.ui.shopping.ShoppingFragment"
         android:label="@string/menu_shopping"
-        tools:layout="@layout/fragment_shopping" />
+        tools:layout="@layout/fragment_shopping" >
+        <action
+            android:id="@+id/action_nav_shoppingList_to_addShoppingListItemFragment"
+            app:destination="@id/addShoppingListItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_expiring"
         android:name="com.example.myfridge.ui.expiring.ExpiringFragment"
@@ -51,6 +55,10 @@
         android:id="@+id/settingsActivity"
         android:name="com.example.myfridge.ui.settings.SettingsActivity"
         android:label="SettingsActivity" />
+    <fragment
+        android:id="@+id/addShoppingListItemFragment"
+        android:name="com.example.myfridge.ui.shopping.AddShoppingListItemFragment"
+        android:label="AddShoppingListItemFragment" />
 
 
 </navigation>

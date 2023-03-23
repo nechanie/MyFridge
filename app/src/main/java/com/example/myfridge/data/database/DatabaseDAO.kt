@@ -43,4 +43,16 @@ class DatabaseDAO{
         @Query("SELECT * FROM FridgeItemInfo WHERE exp < :soonDate")
         fun expiringSoon(soonDate:Long): Flow<List<FridgeItemInfo>?>
     }
+
+    @Dao
+    interface ShoppingListItemDAO{
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insert(shoppingListItemInfo : ShoppingListItemInfo)
+
+        @Delete
+        suspend fun delete(shoppingListItemInfo: ShoppingListItemInfo)
+
+        @Query("SELECT * FROM ShoppingListItemInfo")
+        fun queryAll() : Flow<List<ShoppingListItemInfo>?>
+    }
 }

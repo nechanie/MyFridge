@@ -2,23 +2,29 @@ package com.example.myfridge.ui.shopping
 
 import android.app.ActionBar
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfridge.R
+import com.example.myfridge.data.shopping.ShoppingList
 import com.example.myfridge.databinding.FragmentShoppingBinding
+import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
+import com.example.myfridge.ui.home.HomeFragmentDirections
 import com.example.myfridge.ui.recipes.ShoppingAdapter
 
 class ShoppingFragment : Fragment() {
-
+    private val viewModel: DatabaseViewModel.ShoppingListItemInfoViewModel by viewModels()
     private var _binding: FragmentShoppingBinding? = null
     private lateinit var shoppingAdapter: ShoppingAdapter
     private lateinit var shoppingRv: RecyclerView
@@ -32,20 +38,42 @@ class ShoppingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        (activity as MenuHost).addMenuProvider(object: MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater){
+                menuInflater.inflate(R.menu.shoppinglist_add_bar, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId){
+                    R.id.action_add_shoppingList_item -> {
+                        Log.d("ShoppingFrag", "Re-routing")
+                        val destination = ShoppingFragmentDirections.actionNavShoppingListToAddShoppingListItemFragment()
+                        findNavController().navigate(destination)
+                        true
+                    }
+                    else -> {
+                        (activity as AppCompatActivity).onOptionsItemSelected(menuItem)
+                    }
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        //instantiate the viewmodel
         val shoppingViewModel =
             ViewModelProvider(this).get(ShoppingViewModel::class.java)
 
+        //grab/bind to the xml file
         _binding = FragmentShoppingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        //recycler view for the shopping list
         shoppingRv = binding.rvShopping
         shoppingRv.layoutManager = LinearLayoutManager(container?.context)
         shoppingAdapter = ShoppingAdapter()
         shoppingRv.adapter = shoppingAdapter
-        shoppingViewModel.shoppingList.observe(viewLifecycleOwner) {
-            shoppingAdapter.updateShoppingList(it)
+        viewModel.shoppingListItemInfoAll.observe(viewLifecycleOwner) {
+            shoppingAdapter.updateShoppingList(it!!)
         }
-        shoppingViewModel.loadShoppingList()
         return root
     }
 

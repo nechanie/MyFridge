@@ -22,3 +22,9 @@ data class FridgeItemInfo(
     val name: String,
     val exp: Long
     ) : java.io.Serializable
+
+@Entity
+data class ShoppingListItemInfo(
+    @PrimaryKey
+    val name: String
+) : java.io.Serializable
