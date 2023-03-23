@@ -4,6 +4,7 @@ import android.widget.CalendarView
 import android.widget.DatePicker
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.sql.Blob
 
@@ -20,5 +21,9 @@ data class FridgeItemInfo(
     val img: ByteArray,
     @PrimaryKey
     val name: String,
-    val exp: Long
-    ) : java.io.Serializable
+    val exp: Long,
+
+    ) : java.io.Serializable {
+    @Ignore
+    var showingMenu: Boolean = false
+    }

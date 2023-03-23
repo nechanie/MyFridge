@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_addFoodFragment"
-            app:destination="@id/addFoodFragment" />
+            app:destination="@id/addFoodFragment"
+            app:launchSingleTop="false" />
     </fragment>
 
     <fragment
@@ -42,6 +43,8 @@
         <argument
             android:name="recipe"
             app:argType="com.example.myfridge.data.recipes.RecipeItem"/>
+        <argument android:name="position"
+            app:argType="integer"/>
     </fragment>
     <fragment
         android:id="@+id/addFoodFragment"
