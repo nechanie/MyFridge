@@ -20,8 +20,12 @@ data class FridgeItemInfo(
     val img: ByteArray,
     @PrimaryKey
     val name: String,
-    val exp: Long
-    ) : java.io.Serializable
+    val exp: Long,
+
+    ) : java.io.Serializable {
+    @Ignore
+    var showingMenu: Boolean = false
+    }
 
 @Entity
 data class ShoppingListItemInfo(

@@ -39,12 +39,13 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.takisoft.preferencex:preferencex:1.1.0'
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+//    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0'
     implementation 'androidx.activity:activity-ktx:1.6.1'
@@ -72,5 +73,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'androidx.cardview:cardview:1.0.0'
-
+    implementation "com.github.skydoves:elasticviews:2.1.0"
+    implementation "com.github.skydoves:transformationlayout:1.1.2"
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation 'com.daimajia.easing:library:1.0.0@aar'
+    implementation 'com.daimajia.androidanimations:library:1.1.2@aar'
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
 }

@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavAction
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,6 +26,9 @@ import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
+import com.skydoves.transformationlayout.TransformationLayout
+import com.skydoves.transformationlayout.addTransformation
+import com.skydoves.transformationlayout.onTransformationStartContainer
 
 const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY
 class RecipesFragment : Fragment() {
@@ -60,6 +66,14 @@ class RecipesFragment : Fragment() {
         return root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        onTransformationStartContainer()
+//        val fragment = RecipesDetailedFragment()
+//        val bundle = requireView().findViewById<TransformationLayout>(R.id.recipe_item_transformation_layout).getBundle("TransformationParams")
+//        bundle.putParcelable(MainSingleDetailFragment.posterKey, poster)
+//        fragment.arguments = bundle
+    }
     fun searchRecipe(viewModel: RecipesViewModel) {
         val ingredients = "potatoes"
         databaseViewModel.addAPICallInfo(APICallInfo(ingredients, System.currentTimeMillis()))
@@ -70,8 +84,12 @@ class RecipesFragment : Fragment() {
         _binding = null
     }
 
-    private fun forwardDetailedRecipe(recipe: RecipeItem){
-        val directions = RecipesFragmentDirections.actionNavRecipesToRecipesDetailedFragment(recipe)
+    private fun forwardDetailedRecipe(recipe: RecipeItem, position: Int, currentView: View){
+//        val text = currentView.findViewById<TextView>(R.id.recipe_item_name)
+//        ViewCompat.setTransitionName(text,"possible$position")
+//        Log.d("setTransName", text.transitionName)
+//        val extra = FragmentNavigatorExtras(text to "possible$position")
+        val directions = RecipesFragmentDirections.actionNavRecipesToRecipesDetailedFragment(recipe, position)
         findNavController().navigate(directions)
         return
     }
