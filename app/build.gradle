@@ -87,6 +87,8 @@ dependencies {
     implementation "com.mikepenz:materialdrawer-iconics:9.0.1"
     implementation 'io.github.prathameshmm02.themeEngine:themeEngine:1.0'
     implementation  'com.github.Kennyc1012:MultiStateView:2.2.0'
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
     implementation "com.mikepenz:iconics-core:5.4.0"
 
 
