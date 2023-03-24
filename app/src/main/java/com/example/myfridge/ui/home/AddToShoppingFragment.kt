@@ -56,8 +56,8 @@ class AddToShoppingFragment : Fragment() {
 
         val chooseList = binding.editShoppingList
         var names = mutableListOf<String>()
+
         listViewModel.shoppingListInfoNamesAll.observe(viewLifecycleOwner) {
-            shoppingTV.text = "Select a Shopping List to Add This Item To"
             it?.forEach() {
                 Log.d("observe", it)
                 names.add(it)
@@ -67,6 +67,9 @@ class AddToShoppingFragment : Fragment() {
                 requireContext(),
                 android.R.layout.simple_spinner_item, names
             )
+            if (names.size != 0) {
+                shoppingTV.text = getString(R.string.add_to_shopping_list)
+            }
             stringArrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             chooseList.adapter = stringArrAdapter
         }

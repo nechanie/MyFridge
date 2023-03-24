@@ -30,6 +30,7 @@ import com.skydoves.transformationlayout.onTransformationEndContainer
 
 class RecipesDetailedFragment: Fragment() {
     private val databaseViewModel: DatabaseViewModel.APICallInfoViewModel by viewModels()
+    private val recipesDetailedViewModel = ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
     private val args: RecipesDetailedFragmentArgs by navArgs()
     private var _binding: FragmentRecipesDetailedBinding? = null
     // This property is only valid between onCreateView and
@@ -100,8 +101,6 @@ class RecipesDetailedFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         val recipe = args.recipe
-        val recipesDetailedViewModel =
-            ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
         searchRecipeDetailed(recipesDetailedViewModel, recipe)
     }
 

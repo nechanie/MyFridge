@@ -43,7 +43,7 @@
     <string name="month">MM</string>
     <string name="year">YYYY</string>
 
-    <string name="add_to_shopping_list">Add to which shopping list?</string>
+    <string name="add_to_shopping_list">Select a Shopping List to Add This Item To</string>
     <string name="add_to_shopping_error">You don\'t have any shopping lists to add to</string>
 
 
