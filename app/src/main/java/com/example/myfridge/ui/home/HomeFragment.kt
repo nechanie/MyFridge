@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfridge.R
 import com.example.myfridge.databinding.FragmentHomeBinding
+import com.kennyc.view.MultiStateView
 
 class HomeFragment : Fragment() {
 
@@ -27,12 +29,12 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
 
 
         homeRv = binding.rvHome
@@ -41,8 +43,11 @@ class HomeFragment : Fragment() {
         homeRv.adapter = homeAdapter
         homeViewModel.fridgeContent.observe(viewLifecycleOwner) {
             homeAdapter.updateHomeList(it)
+            binding.multiStateView.viewState = MultiStateView.ViewState.CONTENT
         }
+        binding.multiStateView.viewState = MultiStateView.ViewState.LOADING
         homeViewModel.loadFridgeContent()
+
         return root
     }
 

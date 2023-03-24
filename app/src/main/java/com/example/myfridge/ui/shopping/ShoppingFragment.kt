@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.databinding.FragmentShoppingBinding
 import com.example.myfridge.ui.home.HomeAdapter
 import com.example.myfridge.ui.recipes.ShoppingAdapter
+import com.kennyc.view.MultiStateView
 
 class ShoppingFragment : Fragment() {
 
@@ -39,8 +40,10 @@ class ShoppingFragment : Fragment() {
         shoppingAdapter = ShoppingAdapter()
         shoppingRv.adapter = shoppingAdapter
         shoppingViewModel.shoppingList.observe(viewLifecycleOwner) {
+            binding.multiStateView.viewState = MultiStateView.ViewState.CONTENT
             shoppingAdapter.updateShoppingList(it)
         }
+        binding.multiStateView.viewState = MultiStateView.ViewState.LOADING
         shoppingViewModel.loadShoppingList()
         return root
     }
