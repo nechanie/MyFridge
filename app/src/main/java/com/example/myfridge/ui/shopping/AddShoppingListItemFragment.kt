@@ -48,29 +48,17 @@ class AddShoppingListItemFragment : Fragment() {
         chooseList = binding.shoppingListSpinner
         listViewModel.shoppingListInfoNamesAll.observe(viewLifecycleOwner) {
             it?.forEach() {
+                Log.d("observe", it)
                 names.add(it)
+                Log.d("observe names", names.toString())
             }
+            val stringArrAdapter = ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_spinner_item, names
+            )
+            stringArrAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+            chooseList.adapter = stringArrAdapter
         }
-
-        //make an array of the strings to use in the spinner
-        val stringArrAdapter = ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_spinner_item, names
-        )
-        stringArrAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        chooseList.adapter = stringArrAdapter
-
-        /*chooseList.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                Log.d("AddShoppingListItem", parent?.getItemAtPosition(position).toString())
-                Log.d("AddShoppingListItem", names[position])
-                listName = names[position]
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                //do nothing
-                Log.d("AddShoppingListItem", "uhhhh")
-            }
-        }*/
 
         addName = binding.addName
         val submitButton = _binding!!.addShoppingListItemButton
