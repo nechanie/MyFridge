@@ -86,7 +86,7 @@ class DatabaseViewModel {
             }
         }
 
-        fun getItemsForList(listName: String) = repository.getItemsForList(listName)
+        fun getItemsForList(listName: String) = repository.getItemsForList(listName).asLiveData()
     }
 
     class ShoppingListInfoViewModel(application: Application) : AndroidViewModel(application){

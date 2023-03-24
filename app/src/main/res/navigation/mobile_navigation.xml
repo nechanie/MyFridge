@@ -31,6 +31,9 @@
         android:name="com.example.myfridge.ui.shopping.ShoppingFragment"
         android:label="@string/menu_shopping"
         tools:layout="@layout/fragment_shopping" >
+        <argument
+            android:name="shoppingListName"
+            app:argType="string"/>
         <action
             android:id="@+id/action_nav_shoppingList_to_addShoppingListItemFragment"
             app:destination="@id/addShoppingListItemFragment" />
@@ -57,10 +60,19 @@
         android:id="@+id/addFoodFragment"
         android:name="com.example.myfridge.ui.home.AddFoodFragment"
         android:label="AddFoodFragment" />
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.example.myfridge.ui.settings.SettingsActivity"
-        android:label="SettingsActivity" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.myfridge.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_nav_settings_to_themeSettings"
+            app:destination="@id/themeSettings" />
+    </fragment>
+    <action android:id="@+id/action_global_nav_home" app:destination="@id/nav_home"/>
+    <fragment
+        android:id="@+id/themeSettings"
+        android:name="com.example.myfridge.ui.settings.ThemeSettings"
+        android:label="ThemeSettings" />
     <fragment
         android:id="@+id/addShoppingListItemFragment"
         android:name="com.example.myfridge.ui.shopping.AddShoppingListItemFragment"
@@ -69,6 +81,7 @@
         android:id="@+id/addShoppingListFragment"
         android:name="com.example.myfridge.ui.shopping.AddShoppingListFragment"
         android:label="AddShoppingListFragment"/>
+    <action android:id="@+id/action_global_nav_shopping" app:destination="@id/nav_shopping"/>
 
 
 </navigation>

@@ -15,8 +15,8 @@ class ShoppingAdapter: RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
 
     override fun getItemCount() = shoppingList.size
 
-    fun updateShoppingList(recipes: List<ShoppingListItemInfo>?) {
-        shoppingList = recipes ?: listOf()
+    fun updateShoppingList(newList: List<ShoppingListItemInfo>?) {
+        shoppingList = newList ?: listOf()
         notifyDataSetChanged()
     }
 

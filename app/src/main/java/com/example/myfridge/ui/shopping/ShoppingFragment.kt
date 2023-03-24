@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
@@ -22,12 +23,14 @@ import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
 import com.example.myfridge.ui.home.HomeFragmentDirections
 import com.example.myfridge.ui.recipes.ShoppingAdapter
+import kotlinx.coroutines.flow.observeOn
 
 class ShoppingFragment : Fragment() {
     private val viewModel: DatabaseViewModel.ShoppingListItemInfoViewModel by viewModels()
     private var _binding: FragmentShoppingBinding? = null
     private lateinit var shoppingAdapter: ShoppingAdapter
     private lateinit var shoppingRv: RecyclerView
+    private val args : ShoppingFragmentArgs by navArgs()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -76,9 +79,11 @@ class ShoppingFragment : Fragment() {
         shoppingRv.layoutManager = LinearLayoutManager(container?.context)
         shoppingAdapter = ShoppingAdapter()
         shoppingRv.adapter = shoppingAdapter
-        //viewModel.shoppingListItemInfoAll.observe(viewLifecycleOwner) {
-        //    shoppingAdapter.updateShoppingList(it!!)
-        //}
+        Log.d("Shopping Fragment", args.shoppingListName)
+        viewModel.getItemsForList(args.shoppingListName).observe(viewLifecycleOwner){
+            Log.d("Shopping Fragment", it.toString())
+            shoppingAdapter.updateShoppingList(it)
+        }
         return root
     }
 
