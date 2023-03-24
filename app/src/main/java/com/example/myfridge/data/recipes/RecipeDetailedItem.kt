@@ -8,7 +8,6 @@ data class RecipeDetailedItem (
     @Json(name="id") val id: Int = 0,
     @Json(name="title") val title: String = "",
     @Json(name="image") val image: String = "",
-    @Json(name="imageType") val imageType: String = "",
     @Json(name="servings") val servings: Int = 0,
     @Json(name="readyInMinutes") val readyInMinutes: Int = 0,
     @Json(name="sourceUrl") val sourceUrl: String = "",

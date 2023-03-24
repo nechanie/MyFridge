@@ -17,7 +17,6 @@ class RecipesDetailedViewModel : ViewModel() {
     fun loadDetailedRecipeResults(id: Int, appid: String){
         viewModelScope.launch {
             _recipes.value = recipe.loadDetailedRecipeSearch(id, appid).getOrNull()
-            Log.d("DETAILED", "${_recipes.value}")
         }
     }
 }

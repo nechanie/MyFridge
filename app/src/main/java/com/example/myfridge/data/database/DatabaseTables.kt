@@ -6,6 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import java.sql.Blob
 
 @Entity
@@ -27,3 +28,16 @@ data class FridgeItemInfo(
     @Ignore
     var showingMenu: Boolean = false
     }
+
+@Entity
+data class RecipeDetailedItemInfo(
+    @PrimaryKey
+    val id: Int,
+    val title: String,
+    val image: String,
+    val servings: Int,
+    val readyInMinutes: Int,
+    val sourceUrl: String = "",
+    val aggregateLikes: Int,
+    val summary: String = ""
+)

@@ -81,8 +81,11 @@ class HomeFragment : Fragment() {
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
             homeAdapter.updateHomeList(FridgeContent(it!!))
         }
+
         return root
     }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -42,6 +42,8 @@ class RecipesDetailedFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+
         val recipesDetailedViewModel =
             ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
         _binding = FragmentRecipesDetailedBinding.inflate(inflater, container, false)
@@ -49,9 +51,6 @@ class RecipesDetailedFragment: Fragment() {
 
 
         ViewCompat.setTransitionName(binding.detailedRecipeMainText,"image${args.position}")
-        val recipe = args.recipe
-
-        searchRecipeDetailed(recipesDetailedViewModel, recipe)
 
         recipesDetailedViewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             if (recipes != null) {
@@ -96,6 +95,14 @@ class RecipesDetailedFragment: Fragment() {
         super.onCreate(savedInstanceState)
 
 //        onTransformationEndContainer(requireArguments().getBundle("possible${args.position}") as TransformationLayout.Params)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val recipe = args.recipe
+        val recipesDetailedViewModel =
+            ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
+        searchRecipeDetailed(recipesDetailedViewModel, recipe)
     }
 
     fun searchRecipeDetailed(viewModel: RecipesDetailedViewModel, recipe: RecipeItem) {

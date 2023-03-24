@@ -1,5 +1,7 @@
 package com.example.myfridge.data.database
 
+import com.example.myfridge.data.recipes.RecipeDetailedItem
+
 class DatabaseRepository {
 
     class APICallInfoRepository(
@@ -32,6 +34,4 @@ class DatabaseRepository {
         val getAllFridgeItems = dao.queryAll()
         val getAllFridgeItemNames = dao.queryAllNames()
     }
-
-
 }

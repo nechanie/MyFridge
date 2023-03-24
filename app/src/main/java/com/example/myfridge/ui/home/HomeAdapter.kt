@@ -2,6 +2,7 @@ package com.example.myfridge.ui.home
 
 import android.animation.Animator
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -15,14 +16,17 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewPropertyAnimatorListener
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SimpleSwipeListener
 import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.example.myfridge.R
+import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
+import com.example.myfridge.ui.database.DatabaseViewModel
 import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder
 import java.text.SimpleDateFormat
 import java.util.*

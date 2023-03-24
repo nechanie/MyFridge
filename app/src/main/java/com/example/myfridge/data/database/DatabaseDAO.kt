@@ -1,6 +1,7 @@
 package com.example.myfridge.data.database
 
 import androidx.room.*
+import com.example.myfridge.data.recipes.RecipeDetailedItem
 import kotlinx.coroutines.flow.Flow
 
 
