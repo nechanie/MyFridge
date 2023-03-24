@@ -3,6 +3,8 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="detailed_instructions_button">Instructions</string>
+    <string name="action_instructions_error">Invalid API url found</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main_with_nav_drawer">MainActivityWithNavDrawer</string>

@@ -16,7 +16,7 @@ interface RecipesService {
     @GET("recipes/findByIngredients")
     suspend fun getRecipesData (
         @Query("apiKey") app_id: String,
-        @Query("ingredients") ingredients : String = "apples"
+        @Query("ingredients") ingredients : String = "bananas"
     ) : Response<List<RecipeItem>>
 
     @GET("recipes/{id}/information")

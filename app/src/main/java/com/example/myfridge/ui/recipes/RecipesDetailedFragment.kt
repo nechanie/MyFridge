@@ -1,5 +1,8 @@
 package com.example.myfridge.ui.recipes
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
@@ -17,9 +20,11 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.myfridge.R
 import com.example.myfridge.data.database.APICallInfo
+import com.example.myfridge.data.recipes.RecipeDetailedItem
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesDetailedBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 
@@ -75,6 +80,12 @@ class RecipesDetailedFragment: Fragment() {
                 binding.detailedRecipeSummaryText.apply {
                     text = Html.fromHtml(recipes.summary, HtmlCompat.FROM_HTML_MODE_LEGACY)
                 }
+                binding.detailedRecipeInstructionsButton.apply {
+                    visibility = View.VISIBLE
+                    setOnClickListener{
+                        onInstructionButtonClicked(recipes.sourceUrl)
+                    }
+                }
             }
         }
         binding.detailedRecipeMainText.transitionName = "possible${args.position}"
@@ -89,5 +100,20 @@ class RecipesDetailedFragment: Fragment() {
 
     fun searchRecipeDetailed(viewModel: RecipesDetailedViewModel, recipe: RecipeItem) {
         viewModel.loadDetailedRecipeResults(recipe!!.id, SPOONACULAR_APPID)
+    }
+
+    private fun onInstructionButtonClicked(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            view?.let {
+                Snackbar.make(
+                    it.findViewById(R.id.detailed_constraint_layout),
+                    R.string.action_instructions_error,
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@ class DatabaseViewModel {
             AppDatabase.getInstance(application).fridgeItemInfoDao()
         )
         val fridgeItemInfoAll: LiveData<List<FridgeItemInfo>?> = repository.getAllFridgeItems.asLiveData()
+        val fridgeItemNameAll: LiveData<List<String>?> = repository.getAllFridgeItemNames.asLiveData()
 
         fun addFridgeItemInfo(fridgeItem: FridgeItemInfo){
             viewModelScope.launch{

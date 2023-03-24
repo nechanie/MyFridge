@@ -42,5 +42,8 @@ class DatabaseDAO{
 
         @Query("SELECT * FROM FridgeItemInfo WHERE exp < :soonDate")
         fun expiringSoon(soonDate:Long): Flow<List<FridgeItemInfo>?>
+
+        @Query("SELECT name FROM FridgeItemInfo")
+        fun queryAllNames(): Flow<List<String>?>
     }
 }

@@ -11,7 +11,7 @@ data class RecipeDetailedItem (
     @Json(name="imageType") val imageType: String = "",
     @Json(name="servings") val servings: Int = 0,
     @Json(name="readyInMinutes") val readyInMinutes: Int = 0,
-    @Json(name="spoonacularSourceUrl") val spoonacularSourceUrl: String = "",
+    @Json(name="sourceUrl") val sourceUrl: String = "",
     @Json(name="aggregateLikes") val aggregateLikes: Int,
     @Json(name="summary") val summary: String = ""
 ) : java.io.Serializable

@@ -30,6 +30,7 @@ class DatabaseRepository {
         fun getExpiringSoon(soonDate:Long) = dao.expiringSoon(soonDate)
 
         val getAllFridgeItems = dao.queryAll()
+        val getAllFridgeItemNames = dao.queryAllNames()
     }
 
 

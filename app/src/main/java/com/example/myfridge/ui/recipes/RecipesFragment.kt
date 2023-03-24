@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavAction
 import androidx.navigation.findNavController
@@ -33,7 +34,9 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY
 class RecipesFragment : Fragment() {
     private val databaseViewModel: DatabaseViewModel.APICallInfoViewModel by viewModels()
+    private val fridgedatabaseViewModel: DatabaseViewModel.FridgeItemInfoViewModel by viewModels()
     private var _binding: FragmentRecipesBinding? = null
+    private var ingredients: String = "bananas"
     private lateinit var recipesAdapter: RecipesAdapter
     private lateinit var recipesRv: RecyclerView
     // This property is only valid between onCreateView and
@@ -59,9 +62,14 @@ class RecipesFragment : Fragment() {
             recipesAdapter.updateRecipesList(it)
         }
 
+        fridgedatabaseViewModel.fridgeItemNameAll.observe(viewLifecycleOwner) {
+            ingredients = it!!.joinToString(separator=",+")
+            Log.d("RecipesFragment", "${ingredients}")
+        }
+
         val searchButton : Button = root.findViewById(R.id.searchRecipesButton)
         searchButton.setOnClickListener {
-            searchRecipe(recipesViewModel)
+            searchRecipe(recipesViewModel, ingredients)
         }
         return root
     }
@@ -74,8 +82,7 @@ class RecipesFragment : Fragment() {
 //        bundle.putParcelable(MainSingleDetailFragment.posterKey, poster)
 //        fragment.arguments = bundle
     }
-    fun searchRecipe(viewModel: RecipesViewModel) {
-        val ingredients = "potatoes"
+    fun searchRecipe(viewModel: RecipesViewModel, ingredients: String) {
         databaseViewModel.addAPICallInfo(APICallInfo(ingredients, System.currentTimeMillis()))
         viewModel.loadRecipeResults(SPOONACULAR_APPID, ingredients)
     }
