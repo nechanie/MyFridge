@@ -100,10 +100,13 @@ class HomeFragment : Fragment() {
 
         return root
     }
-    fun onShopClick(text:String){
+    fun onShopClick(name: String){
 //        val list = mutableListOf<String>(text, text)
 //        val shopList = ShoppingList("NewList", list)
 //        shoppingViewModel.addShoppingList(shopList)
+        val destination = HomeFragmentDirections.actionNavHomeToAddShoppingFragment(name)
+        val navController = findNavController()
+        navController.navigate(destination)
     }
 
     fun onDeleteClick(name:String) {

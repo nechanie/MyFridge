@@ -97,7 +97,6 @@ class AddFoodFragment : Fragment() {
         container.setOnClickListener {
             launcher.launch(path)
         }
-
     }
 }
 

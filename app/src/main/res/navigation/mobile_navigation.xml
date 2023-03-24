@@ -14,6 +14,10 @@
             android:id="@+id/action_nav_home_to_addFoodFragment"
             app:destination="@id/addFoodFragment"
             app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_nav_home_to_addShoppingFragment"
+            app:destination="@id/addToShoppingFragment"
+            app:launchSingleTop="false"/>
     </fragment>
 
     <fragment
@@ -50,6 +54,14 @@
         android:id="@+id/addFoodFragment"
         android:name="com.example.myfridge.ui.home.AddFoodFragment"
         android:label="AddFoodFragment" />
+    <fragment
+        android:id="@+id/addToShoppingFragment"
+        android:name="com.example.myfridge.ui.home.AddToShoppingFragment"
+        android:label="AddToShoppingFragment">
+        <argument
+            android:name="ingredient"
+            app:argType="string"/>
+    </fragment>
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.myfridge.ui.settings.SettingsFragment"

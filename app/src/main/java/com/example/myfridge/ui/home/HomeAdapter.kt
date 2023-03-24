@@ -63,10 +63,6 @@ class HomeAdapter(private val onShopClick: (String) -> Unit, private val onDelet
 
         holder.bind(this.homeList[position], position)
     }
-
-    fun removeItem(name: String){
-        homeList
-    }
     fun updateHomeList(contents: FridgeContent?){
         homeList = contents?.items ?: listOf()
         notifyItemRangeChanged(0, homeList.size-1)

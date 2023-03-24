@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                         this.drawerLayout!!.close()
                     }
                 }
-
             }
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
