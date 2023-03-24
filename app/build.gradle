@@ -112,5 +112,6 @@ dependencies {
     implementation 'com.mikepenz:material-design-icons-dx-typeface:5.0.1.2-kotlin@aar'
     implementation 'com.mikepenz:phosphor-typeface:1.0.0.0-kotlin@aar'
     implementation "com.mikepenz:iconics-views:5.4.0"
+    implementation "com.mikepenz:iconics-compose:5.4.0"
 
 }

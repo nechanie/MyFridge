@@ -1,4 +1,4 @@
-package com.example.myfridge.ui.home
+package com.example.myfridge.ui.fridge
 
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -24,6 +24,7 @@ import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.database.ShoppingListItemInfo
 import com.example.myfridge.databinding.FragmentAddToShoppingBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
+import com.example.myfridge.ui.fridge.AddToShoppingFragmentArgs
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
 import java.io.File
