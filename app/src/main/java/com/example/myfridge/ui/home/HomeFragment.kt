@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
 
         homeRv = root.findViewById(R.id.rv_home)
         homeRv.layoutManager = LinearLayoutManager(context)
-        homeAdapter = HomeAdapter(::onShopClick)
+        homeAdapter = HomeAdapter(::onShopClick, ::onDeleteClick)
         homeAdapter.mode = Attributes.Mode.Single
         homeRv.adapter = AlphaInAnimationAdapter(homeAdapter).apply {
             // Change the durations.
@@ -80,11 +80,16 @@ class HomeFragment : Fragment() {
         return root
     }
 
-    fun onShopClick(text:String){
-        viewModel.deleteFridgeItemInfo(FridgeItemInfo(null,"name", null))
-//        val list = mutableListOf<String>(text, text)
-//        val shopList = ShoppingList("NewList", list)
-//        shoppingViewModel.addShoppingList(shopList)
+    fun onShopClick(name: String){
+        val destination = HomeFragmentDirections.actionNavHomeToAddShoppingFragment(name)
+        val navController = findNavController()
+        navController.navigate(destination)
+    }
+
+    fun onDeleteClick(name:String) {
+        viewModel.deleteFridgeItemInfo(FridgeItemInfo(null, name, null))
+        val navController = findNavController()
+        navController.navigate(R.id.nav_home)
     }
 
     override fun onDestroyView() {

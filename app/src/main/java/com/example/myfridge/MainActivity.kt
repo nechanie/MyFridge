@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
                         })
                     }
                 }
+
                 itemList.add(
                     SecondaryDrawerItem().apply {
                         nameText = "Add New List"
@@ -128,6 +129,7 @@ class MainActivity : AppCompatActivity() {
                     else{
                         false
                     }
+
             }
 
             navController.addOnDestinationChangedListener { _, destination, _ ->

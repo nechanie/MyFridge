@@ -67,7 +67,7 @@ class AddFoodFragment : Fragment() {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteStream)
             val blob = byteStream.toByteArray()
             viewModel.addFridgeItemInfo(FridgeItemInfo(blob, name, expiration))
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.nav_home)
         }
         return root
     }
@@ -97,7 +97,6 @@ class AddFoodFragment : Fragment() {
         container.setOnClickListener {
             launcher.launch(path)
         }
-
     }
 }
 

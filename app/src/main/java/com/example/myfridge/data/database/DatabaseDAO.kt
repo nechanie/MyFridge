@@ -1,6 +1,7 @@
 package com.example.myfridge.data.database
 
 import androidx.room.*
+import com.example.myfridge.data.recipes.RecipeDetailedItem
 import kotlinx.coroutines.flow.Flow
 
 
@@ -42,6 +43,9 @@ class DatabaseDAO{
 
         @Query("SELECT * FROM FridgeItemInfo WHERE exp < :soonDate")
         fun expiringSoon(soonDate:Long): Flow<List<FridgeItemInfo>?>
+
+        @Query("SELECT name FROM FridgeItemInfo")
+        fun queryAllNames(): Flow<List<String>?>
     }
 
     @Dao
