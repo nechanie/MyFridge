@@ -1,15 +1,23 @@
 package com.example.myfridge.ui.recipes
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.ColorFilter
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -25,6 +33,14 @@ import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesDetailedBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.compose.Image
+import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
+import com.mikepenz.iconics.utils.paddingDp
+import com.mikepenz.iconics.utils.sizeDp
+import com.mikepenz.iconics.view.IconicsImageView
+import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 
@@ -52,18 +68,27 @@ class RecipesDetailedFragment: Fragment() {
 
         recipesDetailedViewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             if (recipes != null) {
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = recipes.title
                 Glide.with(binding.detailedRecipeImage).load(recipes.image).into(binding.detailedRecipeImage)
                 binding.detailedRecipeMainText.apply {
                     text = "${recipes.title} Recipe"
                 }
                 binding.detailedRecipeServingsImage.apply {
-                    setImageResource(R.drawable.ic_detailed_recipe_servings)
+                    setImageDrawable((IconicsDrawable(requireContext(), GoogleMaterial.Icon.gmd_people).apply {
+                        colorList = ColorStateList.valueOf(myThemeColor(android.R.attr.textColorPrimary))
+                        sizeDp = 24
+                        paddingDp = 1
+                    }as Drawable))
                 }
                 binding.detailedRecipeServingsText.apply {
                     text = "Serves: ${recipes.servings}"
                 }
                 binding.detailedRecipeReadyInMinutesImage.apply {
-                    setImageResource(R.drawable.ic_detailed_recipe_readyinminutes)
+                    setImageDrawable((IconicsDrawable(requireContext(), GoogleMaterial.Icon.gmd_schedule).apply {
+                        colorList = ColorStateList.valueOf(myThemeColor(android.R.attr.textColorPrimary))
+                        sizeDp = 24
+                        paddingDp = 1
+                    }as Drawable))
                 }
                 binding.detailedRecipeReadyInMinutesText.apply {
                     text = "${recipes.readyInMinutes} minutes"
@@ -117,6 +142,19 @@ class RecipesDetailedFragment: Fragment() {
                     Snackbar.LENGTH_LONG
                 ).show()
             }
+        }
+    }
+
+    fun myThemeColor(attr: Int): Int {
+        val tv = TypedValue()
+        return if (requireContext().theme.resolveAttribute(attr, tv, true)) {
+            if (tv.resourceId != 0) {
+                ContextCompat.getColor(requireContext(), tv.resourceId)
+            } else {
+                tv.data
+            }
+        } else {
+            0
         }
     }
 }

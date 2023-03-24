@@ -20,8 +20,8 @@
     <string name="menu_shopping">Shopping List</string>
     <string name="menu_expiring">Expiring Soon</string>
     <!-- Preference Titles -->
-    <string name="general_header">General</string>
-    <string name="widget_header">Home Screen Widget</string>
+    <string name="general_header">General Settings</string>
+    <string name="theme_header">Theme Settings</string>
 
     <!-- General Preferences -->
     <string name="signature_title">Your signature</string>

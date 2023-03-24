@@ -1,46 +1,32 @@
-package com.example.myfridge.ui.home
+package com.example.myfridge.ui.fridge
 
 import android.animation.Animator
 import android.graphics.BitmapFactory
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import androidx.cardview.widget.CardView
-import androidx.core.view.ViewPropertyAnimatorListener
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SimpleSwipeListener
 import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.example.myfridge.R
-import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
-import com.example.myfridge.ui.database.DatabaseViewModel
-import com.example.myfridge.data.recipes.RecipeItem
 import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.min
 
-class HomeAdapter(private val onShopClick: (String) -> Unit, private val onDeleteClick: (String) -> Unit): RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
+class FridgeAdapter(private val onShopClick: (String) -> Unit, private val onDeleteClick: (String) -> Unit): RecyclerSwipeAdapter<FridgeAdapter.ViewHolder>() {
     var homeList: List<FridgeItemInfo> = listOf()
     override fun getItemCount(): Int = homeList.size
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.home_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.fridge_item, parent, false)
         return ViewHolder(view, onShopClick, onDeleteClick)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -63,15 +49,15 @@ class HomeAdapter(private val onShopClick: (String) -> Unit, private val onDelet
 
         holder.bind(this.homeList[position], position)
     }
-    fun updateHomeList(contents: FridgeContent?){
+    fun updateFridgeList(contents: FridgeContent?){
         homeList = contents?.items ?: listOf()
-        notifyItemRangeChanged(0, homeList.size-1)
+        notifyDataSetChanged()
     }
 
     class ViewHolder(view: View, private val onShopClick: (String) -> Unit, private val onDeleteClick: (String) -> Unit): RecyclerView.ViewHolder(view), AnimateViewHolder{
-        private val itemIMG: ImageView = view.findViewById(R.id.home_item_img)
-        private val itemName: TextView = view.findViewById(R.id.home_item_name)
-        private val itemExp: TextView = view.findViewById(R.id.home_item_expr)
+        private val itemIMG: ImageView = view.findViewById(R.id.fridge_item_img)
+        private val itemName: TextView = view.findViewById(R.id.fridge_item_name)
+        private val itemExp: TextView = view.findViewById(R.id.fridge_item_expr)
         val swipeLayout = view.findViewById<SwipeLayout>(R.id.swipe)
         val shopButton = view.findViewById<Button>(R.id.to_list_button)
         val delButton = view.findViewById<Button>(R.id.delete_button)
@@ -123,9 +109,11 @@ class HomeAdapter(private val onShopClick: (String) -> Unit, private val onDelet
         fun bind(listItem: FridgeItemInfo, position:Int){
             currentItemInfo = listItem
             currentPosition = position
-            val bytes: ByteArray = listItem.img!!
-            val newBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options())
-            itemIMG.setImageBitmap(newBitmap)
+            if (listItem.img != null) {
+                val bytes: ByteArray = listItem.img!!
+                val newBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options())
+                itemIMG.setImageBitmap(newBitmap)
+            }
             itemName.text = listItem.name
             itemExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp!!))
         }

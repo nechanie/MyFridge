@@ -1,6 +1,7 @@
 package com.example.myfridge
 
 import android.content.res.Configuration
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +23,10 @@ import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.materialdrawer.holder.StringHolder
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.fastadapter.ISubItem
+import com.mikepenz.iconics.dsl.iconicsDrawable
 import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
+import com.mikepenz.iconics.utils.wrapByIconics
+import com.mikepenz.materialdrawer.holder.ImageHolder
 import com.mikepenz.materialdrawer.iconics.iconicsIcon
 import com.mikepenz.materialdrawer.model.ExpandableDrawerItem
 import com.mikepenz.materialdrawer.model.NavigationDrawerItem
@@ -33,10 +37,7 @@ import com.mikepenz.materialdrawer.model.interfaces.nameText
 import com.mikepenz.materialdrawer.model.interfaces.nameRes
 import com.mikepenz.materialdrawer.model.interfaces.nameText
 import com.mikepenz.materialdrawer.model.interfaces.withName
-import com.mikepenz.materialdrawer.util.addItems
-import com.mikepenz.materialdrawer.util.getDrawerItem
-import com.mikepenz.materialdrawer.util.inflateMenu
-import com.mikepenz.materialdrawer.util.setupWithNavController
+import com.mikepenz.materialdrawer.util.*
 import com.mikepenz.materialdrawer.widget.MaterialDrawerSliderView
 import com.quickersilver.themeengine.ThemeEngine
 import com.quickersilver.themeengine.ThemeMode
@@ -55,18 +56,10 @@ class MainActivity : AppCompatActivity() {
         ThemeEngine.applyToActivity(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val themeEngine = ThemeEngine.getInstance(this)
         setSupportActionBar(binding.appBarMainActivity.toolbar)
-
+        Iconics.init(this)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
-        actionBarDrawerToggle = ActionBarDrawerToggle(
-            this, binding.root,
-            binding.appBarMainActivity.toolbar,
-            com.mikepenz.materialdrawer.R.string.material_drawer_open,
-            com.mikepenz.materialdrawer.R.string.material_drawer_close
-        )
-        binding.root.addDrawerListener(actionBarDrawerToggle)
         val drawerLayout: DrawerLayout = binding.drawerLayout
         navController =
             findNavController(R.id.nav_host_fragment_content_main_activity)
@@ -79,15 +72,30 @@ class MainActivity : AppCompatActivity() {
         )
         slider = binding.slider
         setupActionBarWithNavController(navController, appBarConfiguration)
-//        binding.slider.setupWithNavController(navController, { view, item, int -> Log.d("NAVLISTEN", "${item}\n${view}\n${int}"); true}, fallBackListener = { view, item, int -> Log.d("NAVFALLBACK", "${item}\n${view}\n${int}"); true})
         slider.apply {
             setSelectionAtPosition(0, false)
             inflateMenu(R.menu.activity_main_drawer)
+            (getDrawerItem(R.id.nav_home.toLong()) as PrimaryDrawerItem).apply {
+                iconicsIcon = GoogleMaterial.Icon.gmd_home
+            }
+            getDrawerItem(R.id.nav_home.toLong())?.let { updateItem(it) }
+            (getDrawerItem(R.id.nav_recipes.toLong()) as PrimaryDrawerItem).apply {
+                iconicsIcon = GoogleMaterial.Icon.gmd_no_food
+            }
+            getDrawerItem(R.id.nav_recipes.toLong())?.let { updateItem(it) }
+            (getDrawerItem(R.id.nav_expiring.toLong()) as PrimaryDrawerItem).apply {
+                iconicsIcon = GoogleMaterial.Icon.gmd_timer
+            }
+            getDrawerItem(R.id.nav_expiring.toLong())?.let { updateItem(it) }
+            (getDrawerItem(R.id.nav_settings.toLong()) as PrimaryDrawerItem).apply {
+                iconicsIcon = GoogleMaterial.Icon.gmd_settings
+            }
+            getDrawerItem(R.id.nav_settings.toLong())?.let { updateItem(it) }
             addItems(
                 ExpandableDrawerItem().apply {
                     nameText = "Shopping Lists"
                     level = 1
-                    iconicsIcon = GoogleMaterial.Icon.gmd_category
+                    iconicsIcon = GoogleMaterial.Icon.gmd_shopping_cart
                     identifier = R.id.nav_shopping.toLong()
                     isSelectable = false
 
@@ -101,7 +109,6 @@ class MainActivity : AppCompatActivity() {
                         itemList.add(SecondaryDrawerItem().apply {
                             nameText = listinfo.name
                             level = 1
-                            iconicsIcon = GoogleMaterial.Icon.gmd_pageview
                             tag = listinfo.name
                         })
                     }
@@ -111,7 +118,6 @@ class MainActivity : AppCompatActivity() {
                     SecondaryDrawerItem().apply {
                         nameText = "Add New List"
                         level = 1
-                        iconicsIcon = GoogleMaterial.Icon.gmd_pageview
                         tag = "adder"
                     }
                 )
@@ -145,20 +151,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    override fun onResume() {
-        super.onResume()
-        actionBarDrawerToggle.syncState()
-    }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        actionBarDrawerToggle.onConfigurationChanged(newConfig)
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        actionBarDrawerToggle.syncState()
-    }
 
     private fun onNavSupportedMenuItemSelected(menuItem: IDrawerItem<*>): Boolean{
         try {

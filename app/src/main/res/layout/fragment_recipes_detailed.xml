@@ -5,6 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:paddingBottom="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/detailed_constraint_layout">
 
@@ -18,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <com.mikepenz.iconics.view.IconicsImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/detailed_recipe_servings_image"
@@ -38,7 +39,7 @@
             app:layout_constraintStart_toEndOf="@id/detailed_recipe_servings_image"
             app:layout_constraintTop_toBottomOf="@id/detailed_recipe_image" />
 
-        <ImageView
+        <com.mikepenz.iconics.view.IconicsImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/detailed_recipe_readyInMinutes_image"
@@ -109,7 +110,6 @@
             android:layout_gravity="center"
             android:layout_marginVertical="10dp"
             android:visibility="invisible"
-            android:backgroundTint="#17525E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/detailed_recipe_summary_text"/>

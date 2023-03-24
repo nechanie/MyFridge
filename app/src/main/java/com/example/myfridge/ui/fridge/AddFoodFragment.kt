@@ -1,4 +1,4 @@
-package com.example.myfridge.ui.home
+package com.example.myfridge.ui.fridge
 
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -44,7 +44,7 @@ class AddFoodFragment : Fragment() {
         val root: View = binding.root
         //viewModel.addFridgeItemInfo(FridgeItemInfo("","Apple","3/20/2023"))
         //val recipe = this.requireArguments().getSerializable("recipe") as RecipeItem
-
+        (requireActivity() as AppCompatActivity).supportActionBar
         editName = binding.editName
         editExpiration = binding.editDate
 
@@ -62,10 +62,14 @@ class AddFoodFragment : Fragment() {
             val calendar = Calendar.getInstance()
             calendar.set(editExpiration.year, editExpiration.month, editExpiration.dayOfMonth)
             val expiration = calendar.timeInMillis
-            val bitmap = (binding.addPicture.drawable as BitmapDrawable).bitmap
-            val byteStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteStream)
-            val blob = byteStream.toByteArray()
+            var blob: ByteArray? = try {
+                val bitmap = (binding.addPicture.drawable as BitmapDrawable).bitmap
+                val byteStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteStream)
+                byteStream.toByteArray()
+            } catch (e: Exception){
+                null
+            }
             viewModel.addFridgeItemInfo(FridgeItemInfo(blob, name, expiration))
             findNavController().navigate(R.id.nav_home)
         }
