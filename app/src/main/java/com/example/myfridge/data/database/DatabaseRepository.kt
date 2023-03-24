@@ -41,6 +41,17 @@ class DatabaseRepository {
 
         val getAllShoppingListItems = dao.queryAll()
 
+        fun getItemsForList(listName: String) = dao.getItemsForList(listName)
+    }
+
+    class ShoppingListInfoRepository(
+        private val dao: DatabaseDAO.ShoppingListDAO
+    ){
+        suspend fun insertShoppingList(shoppingListInfo: ShoppingListInfo) = dao.insert(shoppingListInfo)
+
+        val getAllShoppingLists = dao.queryAll()
+
+        val getAllShoppingListNames = dao.queryAllNames()
     }
 
 }

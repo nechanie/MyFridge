@@ -85,6 +85,22 @@ class DatabaseViewModel {
                 repository.deleteShoppingListItem(shoppingListItemInfo)
             }
         }
+
+        fun getItemsForList(listName: String) = repository.getItemsForList(listName)
+    }
+
+    class ShoppingListInfoViewModel(application: Application) : AndroidViewModel(application){
+        private val repository = DatabaseRepository.ShoppingListInfoRepository(
+            AppDatabase.getInstance(application).shoppingListInfoDao()
+        )
+        val shoppingListInfoAll : LiveData<List<ShoppingListInfo>?> = repository.getAllShoppingLists.asLiveData()
+        val shoppingListInfoNamesAll : LiveData<List<String>?> = repository.getAllShoppingListNames.asLiveData()
+
+        fun addShoppingListInfo(shoppingListInfo: ShoppingListInfo){
+            viewModelScope.launch{
+                repository.insertShoppingList(shoppingListInfo)
+            }
+        }
     }
 
 }

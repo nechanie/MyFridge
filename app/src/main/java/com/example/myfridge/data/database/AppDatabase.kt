@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities=[APICallInfo::class, FridgeItemInfo::class, ShoppingListItemInfo::class], version = 1)
+@Database(entities=[APICallInfo::class, FridgeItemInfo::class, ShoppingListItemInfo::class, ShoppingListInfo::class], version = 2)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun apiCallInfoDao(): DatabaseDAO.APICallInfoDAO
@@ -13,6 +13,8 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun fridgeItemInfoDao(): DatabaseDAO.FridgeItemInfoDAO
 
     abstract fun shoppingListItemInfoDao(): DatabaseDAO.ShoppingListItemDAO
+
+    abstract fun shoppingListInfoDao(): DatabaseDAO.ShoppingListDAO
 
     companion object{
         @Volatile private var instance: AppDatabase? = null

@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_add_shoppingList_item"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/ic_add_shopping_item"
         android:title="@string/action_add"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_add_shoppingList"
+        android:icon="@drawable/ic_add"
+        android:title="Create Shopping List"
+        app:showAsAction="ifRoom"/>
 </menu>
