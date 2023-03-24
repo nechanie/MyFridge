@@ -15,11 +15,14 @@ class RecipeDetailedSearch (
         try {
             val response = service.getRecipesDetailed(id, appid)
             if (response.isSuccessful) {
+                Log.d("Recipe", "${response.body()}")
                 Result.success(response.body())
             } else {
+                Log.d("Recipe", "${response.errorBody()}")
                 Result.failure(Exception(response.errorBody()?.string()))
             }
         } catch (e: Exception) {
+            Log.d("Recipe", "${e}")
             Result.failure(e)
         }
     }
