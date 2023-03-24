@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.daimajia.swipe.SimpleSwipeListener
+import com.daimajia.swipe.SwipeLayout
+import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.example.myfridge.R
 import com.example.myfridge.data.database.ShoppingListItemInfo
 import com.example.myfridge.data.shopping.ShoppingItem
 import com.example.myfridge.data.shopping.ShoppingList
 
-class ShoppingAdapter(private val onDeleteButtonClick: (ShoppingListItemInfo) -> Unit): RecyclerView.Adapter<ShoppingAdapter.ViewHolder>() {
+class ShoppingAdapter(private val onDeleteButtonClick: (ShoppingListItemInfo) -> Unit): RecyclerSwipeAdapter<ShoppingAdapter.ViewHolder>() {
     var shoppingList = listOf<ShoppingListItemInfo>()
 
     override fun getItemCount() = shoppingList.size
@@ -28,6 +31,22 @@ class ShoppingAdapter(private val onDeleteButtonClick: (ShoppingListItemInfo) ->
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.swipeLayout.showMode = SwipeLayout.ShowMode.PullOut
+        holder.swipeLayout.isClickToClose = true
+        holder.swipeLayout.addSwipeListener(object: SimpleSwipeListener(){
+
+            override fun onOpen(layout: SwipeLayout) {
+                layout.requestFocus()
+                mItemManger.closeAllExcept(layout)
+                layout.rootView.onFocusChangeListener =
+                    View.OnFocusChangeListener { p0, p1 ->
+                        if (p0?.id != layout.id){
+                            mItemManger.closeAllItems()
+                        }
+                    }
+
+            }
+        })
         holder.bind(this.shoppingList[position])
     }
 
@@ -35,6 +54,7 @@ class ShoppingAdapter(private val onDeleteButtonClick: (ShoppingListItemInfo) ->
         private var shoppingName: TextView = view.findViewById(R.id.shopping_item_name)
         private var delButton: Button = view.findViewById(R.id.delete_shopping_item_button)
         private var currentShoppingItem: ShoppingListItemInfo? = null
+        val swipeLayout = view.findViewById<SwipeLayout>(R.id.swipe)
 
         init{
             delButton.setOnClickListener(){
@@ -46,5 +66,8 @@ class ShoppingAdapter(private val onDeleteButtonClick: (ShoppingListItemInfo) ->
             currentShoppingItem = shoppingItem
             shoppingName.text = shoppingItem.name
         }
+    }
+    override fun getSwipeLayoutResourceId(position: Int): Int {
+        return R.id.swipe
     }
 }

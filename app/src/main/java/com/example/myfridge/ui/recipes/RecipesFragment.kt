@@ -5,18 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavAction
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,13 +20,8 @@ import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
-import com.example.myfridge.ui.home.HomeAdapter
 
 import com.kennyc.view.MultiStateView
-
-import com.skydoves.transformationlayout.TransformationLayout
-import com.skydoves.transformationlayout.addTransformation
-import com.skydoves.transformationlayout.onTransformationStartContainer
 
 
 const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY

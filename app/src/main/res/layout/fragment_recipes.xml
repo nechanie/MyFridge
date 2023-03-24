@@ -13,8 +13,9 @@
     android:layout_height="match_parent"
     android:id="@+id/multiStateView"
     app:msv_loadingView="@layout/loading_view"
+    app:msv_errorView="@layout/error_view"
     app:msv_viewState="loading"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.fridge.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

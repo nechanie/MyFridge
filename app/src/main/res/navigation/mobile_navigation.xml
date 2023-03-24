@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.myfridge.ui.home.HomeFragment"
+        android:name="com.example.myfridge.ui.fridge.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_rv" >
         <action
             android:id="@+id/action_nav_home_to_addFoodFragment"
             app:destination="@id/addFoodFragment"
@@ -47,9 +47,8 @@
     </fragment>
     <fragment
         android:id="@+id/nav_expiring"
-        android:name="com.example.myfridge.ui.expiring.ExpiringFragment"
-        android:label="@string/menu_expiring"
-        tools:layout="@layout/fragment_expiring"/>
+        android:name="com.example.myfridge.ui.fridge.ExpiringFragment"
+        android:label="@string/menu_expiring"/>
     <fragment
         android:id="@+id/recipesDetailedFragment"
         android:name="com.example.myfridge.ui.recipes.RecipesDetailedFragment"
@@ -62,11 +61,11 @@
     </fragment>
     <fragment
         android:id="@+id/addFoodFragment"
-        android:name="com.example.myfridge.ui.home.AddFoodFragment"
+        android:name="com.example.myfridge.ui.fridge.AddFoodFragment"
         android:label="AddFoodFragment" />
     <fragment
         android:id="@+id/addToShoppingFragment"
-        android:name="com.example.myfridge.ui.home.AddToShoppingFragment"
+        android:name="com.example.myfridge.ui.fridge.AddToShoppingFragment"
         android:label="AddToShoppingFragment">
         <argument
             android:name="ingredient"
@@ -99,7 +98,7 @@
         android:name="com.example.myfridge.ui.shopping.AddShoppingListFragment"
         android:label="AddShoppingListFragment"/>
     <action android:id="@+id/action_global_nav_shopping" app:destination="@id/nav_shopping"/>
-    <action android:id="@+id/action_global_addShoppingListFragment" app:destination="@id/addShoppingListFragment"/>
+    <action android:id="@+id/action_global_addShoppingListFragment" app:destination="@id/addShoppingListFragment" />
 
 
 

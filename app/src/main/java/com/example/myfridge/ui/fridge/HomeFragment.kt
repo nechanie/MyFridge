@@ -1,11 +1,7 @@
-package com.example.myfridge.ui.home
+package com.example.myfridge.ui.fridge
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.view.animation.OvershootInterpolator
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -20,17 +16,16 @@ import com.daimajia.swipe.util.Attributes
 import com.example.myfridge.R
 import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
-import com.example.myfridge.databinding.FragmentHomeBinding
+import com.example.myfridge.databinding.FragmentRvBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.quickersilver.themeengine.ThemeEngine
-import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
-import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.SlideInBottomAnimationAdapter
 
 
 class HomeFragment : Fragment() {
     private lateinit var themeEngine: ThemeEngine
-    private var _binding: FragmentHomeBinding? = null
-    private lateinit var homeAdapter: HomeAdapter
+    private var _binding: FragmentRvBinding? = null
+    private lateinit var fridgeAdapter: FridgeAdapter
     private lateinit var homeRv: RecyclerView
     private val viewModel: DatabaseViewModel.FridgeItemInfoViewModel by viewModels()
 //    private val shoppingViewModel: DatabaseViewModel.ShoppingListViewModel by viewModels()
@@ -60,25 +55,18 @@ class HomeFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentRvBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
-        homeRv = root.findViewById(R.id.rv_home)
+        homeRv = binding.rv
         homeRv.layoutManager = LinearLayoutManager(context)
-        homeAdapter = HomeAdapter(::onShopClick, ::onDeleteClick)
-        homeAdapter.mode = Attributes.Mode.Single
-        homeRv.adapter = SlideInLeftAnimationAdapter(homeAdapter).apply {
-            // Change the durations.
-            setDuration(4000)
-            // Change the interpolator.
-            setInterpolator(OvershootInterpolator())
-            // Disable the first scroll mode.
-            setFirstOnly(false)
-        }
+        fridgeAdapter = FridgeAdapter(::onShopClick, ::onDeleteClick)
+        fridgeAdapter.mode = Attributes.Mode.Single
+        homeRv.adapter = SlideInBottomAnimationAdapter(fridgeAdapter).apply { setDuration(5000) }
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
             binding.multiStateView.viewState = MultiStateView.ViewState.CONTENT
-            homeAdapter.updateHomeList(FridgeContent(it!!))
+            fridgeAdapter.updateFridgeList(FridgeContent(it!!))
 
         }
         binding.multiStateView.viewState = MultiStateView.ViewState.LOADING

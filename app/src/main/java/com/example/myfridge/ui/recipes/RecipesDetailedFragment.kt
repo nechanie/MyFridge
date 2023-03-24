@@ -2,6 +2,7 @@ package com.example.myfridge.ui.recipes
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -25,6 +27,10 @@ import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesDetailedBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
+import com.mikepenz.iconics.typeface.library.googlematerial.GoogleMaterial
+import com.mikepenz.iconics.view.IconicsImageView
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 
@@ -54,12 +60,10 @@ class RecipesDetailedFragment: Fragment() {
 
         recipesDetailedViewModel.recipes.observe(viewLifecycleOwner) { recipes ->
             if (recipes != null) {
+                (requireActivity() as AppCompatActivity).supportActionBar?.title = recipes.title
                 Glide.with(binding.detailedRecipeImage).load(recipes.image).into(binding.detailedRecipeImage)
                 binding.detailedRecipeMainText.apply {
                     text = "${recipes.title} Recipe"
-                }
-                binding.detailedRecipeServingsImage.apply {
-                    setImageResource(R.drawable.ic_detailed_recipe_servings)
                 }
                 binding.detailedRecipeServingsText.apply {
                     text = "Serves: ${recipes.servings}"
