@@ -41,7 +41,7 @@ We suggest exploring the guide of our app content below:
   + 
     ####
     <details>
-    <summary>Camera Useage Page</summary>
+    <summary>Camera Usage Page</summary>
       <p>Description</p>
       Brings up the camera for the user to take a picture of the item’s nutrition facts. After the photo is taken, it will be stored with the specified item.
     </details>
@@ -51,7 +51,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Recipe Page</summary>
       <p>Description</p>
-      Shows recipe suggestions based on items in the user’s fridge. Users can filter by estimated prep/cooking time, vegan, vegetarian, pescetarian, gluten free, dairy free, etc
+      Shows recipe suggestions based on items in the user’s fridge.
     </details>
   
   + 
