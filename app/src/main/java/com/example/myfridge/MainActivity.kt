@@ -21,6 +21,8 @@ import com.mikepenz.materialdrawer.util.getDrawerItem
 import com.mikepenz.materialdrawer.util.inflateMenu
 import com.mikepenz.materialdrawer.util.setupWithNavController
 import com.mikepenz.materialdrawer.widget.MaterialDrawerSliderView
+import com.quickersilver.themeengine.ThemeEngine
+import com.quickersilver.themeengine.ThemeMode
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -28,12 +30,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var slider: MaterialDrawerSliderView
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ThemeEngine.applyToActivity(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val themeEngine = ThemeEngine.getInstance(this)
         setSupportActionBar(binding.appBarMainActivity.toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -81,9 +83,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     override fun onResume() {
         super.onResume()
-
         actionBarDrawerToggle.syncState()
     }
 

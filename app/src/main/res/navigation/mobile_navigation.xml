@@ -53,8 +53,16 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.myfridge.ui.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_nav_settings_to_themeSettings"
+            app:destination="@id/themeSettings" />
+    </fragment>
     <action android:id="@+id/action_global_nav_home" app:destination="@id/nav_home"/>
+    <fragment
+        android:id="@+id/themeSettings"
+        android:name="com.example.myfridge.ui.settings.ThemeSettings"
+        android:label="ThemeSettings" />
 
 
 </navigation>

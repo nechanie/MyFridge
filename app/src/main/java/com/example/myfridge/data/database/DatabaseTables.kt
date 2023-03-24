@@ -23,7 +23,4 @@ data class FridgeItemInfo(
     val name: String,
     val exp: Long,
 
-    ) : java.io.Serializable {
-    @Ignore
-    var showingMenu: Boolean = false
-    }
+    ) : java.io.Serializable
