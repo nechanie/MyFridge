@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.util.Attributes
 import com.example.myfridge.R
+import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
 import com.example.myfridge.databinding.FragmentHomeBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
@@ -83,7 +84,7 @@ class HomeFragment : Fragment() {
 
         homeRv = root.findViewById(R.id.rv_home)
         homeRv.layoutManager = LinearLayoutManager(context)
-        homeAdapter = HomeAdapter(::onShopClick)
+        homeAdapter = HomeAdapter(::onShopClick, ::onDeleteClick)
         homeAdapter.mode = Attributes.Mode.Single
         homeRv.adapter = AlphaInAnimationAdapter(homeAdapter).apply {
             // Change the durations.
@@ -99,11 +100,19 @@ class HomeFragment : Fragment() {
 
         return root
     }
-
-    fun onShopClick(text:String){
+    fun onShopClick(name: String){
 //        val list = mutableListOf<String>(text, text)
 //        val shopList = ShoppingList("NewList", list)
 //        shoppingViewModel.addShoppingList(shopList)
+        val destination = HomeFragmentDirections.actionNavHomeToAddShoppingFragment(name)
+        val navController = findNavController()
+        navController.navigate(destination)
+    }
+
+    fun onDeleteClick(name:String) {
+        viewModel.deleteFridgeItemInfo(FridgeItemInfo(null, name, null))
+        val navController = findNavController()
+        navController.navigate(R.id.nav_home)
     }
 
     override fun onDestroyView() {

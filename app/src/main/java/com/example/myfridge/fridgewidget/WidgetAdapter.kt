@@ -105,7 +105,7 @@ class ListRemoteViewsFactory(
         return RemoteViews(context.packageName, R.layout.widget_item).apply {
             setTextViewText(R.id.widget_item_name, itemList[position].name)
 
-            setTextViewText(R.id.widget_item_expr, SimpleDateFormat("MM/dd/yyyy").format(Date(itemList[position].exp)))
+            setTextViewText(R.id.widget_item_expr, SimpleDateFormat("MM/dd/yyyy").format(Date(itemList[position].exp!!)))
             val fillInIntent = Intent().apply {
                 Bundle().also { extras ->
                     extras.putInt(EXTRA_ITEM, position)

@@ -1,5 +1,7 @@
 package com.example.myfridge.data.database
 
+import com.example.myfridge.data.recipes.RecipeDetailedItem
+
 class DatabaseRepository {
 
     class APICallInfoRepository(
@@ -30,6 +32,7 @@ class DatabaseRepository {
         fun getExpiringSoon(soonDate:Long) = dao.expiringSoon(soonDate)
 
         val getAllFridgeItems = dao.queryAll()
+        val getAllFridgeItemNames = dao.queryAllNames()
     }
 
 //    class ShoppingListRepository(
@@ -45,6 +48,4 @@ class DatabaseRepository {
 //
 //        val getAllShoppingLists = dao.queryAll()
 //    }
-
-
 }
