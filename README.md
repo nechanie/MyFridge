@@ -13,31 +13,13 @@ We suggest exploring the guide of our app content below:
   <summary><h3>Pages</h3> - A detailed summary of the user facing pages.</summary>
   
   #### Page Map
-  
-    `TODO`
 
   + 
     ####
     <details>
     <summary>Main Page</summary>
       <p>Description</p>
-      
-    + Task List
-      + [ ] Menu
-      + [ ] Default page = list page<br/>
-      
-      ##### View
-      IMG
-    </details>
-  
-  + 
-    ####
-    <details>
-    <summary>List Page</summary>
-      <p>Description</p>
-      
-      ##### View
-      IMG
+      Displays the home screen that displays upcoming expiration dates, and/or any reminders/notifications. Can navigate to Fridge Page, Settings Page, and Grocery List. Displays the user’s virtual fridge including details such as quantity. Users will be able to filter by food type and search. Can navigate back to Main, Adding Food Page, and detailed item page.
     </details>
   
   + 
@@ -45,9 +27,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Detailed Items Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+      Shows specific details of a specific item in the fridge such as expiration date, serving size, minutes to make, etc.
     </details>
   
   + 
@@ -55,9 +35,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Adding Food Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+      Users can input food options for the food they are adding. Can navigate to the Camera Usage page for picture taking.
     </details>
   
   + 
@@ -65,9 +43,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Camera Useage Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+      Brings up the camera for the user to take a picture of the item’s nutrition facts. After the photo is taken, it will be stored with the specified item.
     </details>
   
   + 
@@ -75,9 +51,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Recipe Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+      Shows recipe suggestions based on items in the user’s fridge. Users can filter by estimated prep/cooking time, vegan, vegetarian, pescetarian, gluten free, dairy free, etc
     </details>
   
   + 
@@ -85,9 +59,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Grocery List Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+       Users can create and manage their grocery list, either by manually entering items or by selecting pre-created items that the user has already created before.
     </details>
   
   + 
@@ -95,9 +67,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Settings Page</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
+      Allow users to configure user preferences and app settings, such as expiration date preferences, light/dark mode. Can navigate to Main
     </details>
   </details>
   
@@ -110,60 +80,30 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Spoonacular</summary>
       <p>Description</p>
+      Allows us to create API calls to get recipes with items in the user's fridge.
     </details>
   </details>
 
 +
   <details>
     <summary><h3>Implicit Intents</h3> - Where we have included implicit intents, and why.</summary>
-  
-    + #### `TODO`
+  <p>Description</p>
+    Intents are used to open up links to recipe instructions in the detailed recipe fragment.
   </details>
 
 +
   <details>
-    <summary><h3>Data Storage</h3> - How we handle data storage within our app</summary>
-  
-  + 
-    ####
-    <details>
-    <summary>User Data</summary>
-      <p>Description</p>
-    </details>
-  
-  
-  + 
-    ####
-    <details>
-    <summary>API Data</summary>
-      <p>Description</p>
-    </details>
-  </details>
+    <summary><h3>Storage</h3> - How we handle data storage within our app</summary>
+  <p>Description</p>
+    We are using data storage to save our fridge items, recipe items, and shopping lists and items.
 
 +
   <details>
     <summary><h3>Additional Features</h3> - A comprehensive list of additional features made available for our users</summary>
-  
-  
-  + 
-    ####
     <details>
-    <summary>Home Screen Widget</summary>
+    <summary>Camera</summary>
       <p>Description</p>
-      
-      ##### View
-      IMG
-    </details>
-  
-  
-  + 
-    ####
-    <details>
-    <summary>Notifications</summary>
-      <p>Description</p>
-      
-      ##### View
-      IMG
+      Brings up the camera for the user to take a picture of the item’s nutrition facts. After the photo is taken, it will be stored with the specified item.
     </details>
   </details>
 
@@ -173,4 +113,5 @@ We suggest exploring the guide of our app content below:
 ## Our Team
 [@Nechanie](https://github.com/nechanie),
 [@METrimble](https://github.com/METrimble),
-[@truongad](https://github.com/truongad)
+[@truongad](https://github.com/truongad),
+[@Richeyi](https://github.com/Richeyi)
