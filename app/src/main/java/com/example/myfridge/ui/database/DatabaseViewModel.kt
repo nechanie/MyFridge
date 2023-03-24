@@ -6,10 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.myfridge.data.database.APICallInfo
-import com.example.myfridge.data.database.AppDatabase
-import com.example.myfridge.data.database.DatabaseRepository
-import com.example.myfridge.data.database.FridgeItemInfo
+import com.example.myfridge.data.database.*
 import kotlinx.coroutines.launch
 
 
@@ -71,5 +68,31 @@ class DatabaseViewModel {
         fun getExpiringSoon(soonDate:Long) = repository.getExpiringSoon(soonDate).asLiveData()
         fun getFridgeItemInfo(fridgeInfo: String) = repository.getFridgeItemInfo(fridgeInfo).asLiveData()
     }
+
+//    class ShoppingListViewModel(application: Application): AndroidViewModel(application){
+//        private val repository = DatabaseRepository.ShoppingListRepository(
+//            AppDatabase.getInstance(application).shoppingListDao()
+//        )
+//        val shoppingLists: LiveData<List<ShoppingList>?> = repository.getAllShoppingLists.asLiveData()
+//
+//        fun addShoppingList(shoppingList: ShoppingList){
+//            viewModelScope.launch{
+//                repository.insertShoppingList(shoppingList)
+//            }
+//        }
+//
+//        fun deleteShoppingList(shoppingList: ShoppingList){
+//            viewModelScope.launch{
+//                repository.deleteShoppingList(shoppingList)
+//            }
+//        }
+//
+//        fun updateShoppingListo(shoppingList: ShoppingList){
+//            viewModelScope.launch{
+//                repository.updateShoppingList(shoppingList)
+//            }
+//        }
+//        fun getShoppingList(name: String) = repository.getShoppingList(name).asLiveData()
+//    }
 
 }

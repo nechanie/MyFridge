@@ -27,12 +27,13 @@ import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
 import com.example.myfridge.ui.database.DatabaseViewModel
+import com.example.myfridge.data.recipes.RecipeItem
 import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.min
 
-class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private val onShopClick: (String) -> Unit, private val onDeleteClick: (String) -> Unit): RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
     var homeList: List<FridgeItemInfo> = listOf()
     override fun getItemCount(): Int = homeList.size
 
@@ -40,7 +41,7 @@ class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View =
             LayoutInflater.from(parent.context).inflate(R.layout.home_item, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, onShopClick, onDeleteClick)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.swipeLayout.showMode = SwipeLayout.ShowMode.PullOut
@@ -63,7 +64,7 @@ class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
         holder.bind(this.homeList[position], position)
     }
 
-    fun removeItem(position: Int){
+    fun removeItem(name: String){
         homeList
     }
     fun updateHomeList(contents: FridgeContent?){
@@ -71,7 +72,7 @@ class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
         notifyItemRangeChanged(0, homeList.size-1)
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view), AnimateViewHolder{
+    class ViewHolder(view: View, private val onShopClick: (String) -> Unit, private val onDeleteClick: (String) -> Unit): RecyclerView.ViewHolder(view), AnimateViewHolder{
         private val itemIMG: ImageView = view.findViewById(R.id.home_item_img)
         private val itemName: TextView = view.findViewById(R.id.home_item_name)
         private val itemExp: TextView = view.findViewById(R.id.home_item_expr)
@@ -82,6 +83,14 @@ class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
         private var currentView: View = view
         private lateinit var currentItemInfo: FridgeItemInfo
 
+        init {
+            shopButton.setOnClickListener{
+                onShopClick(itemName.text.toString())
+            }
+            delButton.setOnClickListener {
+                onDeleteClick(itemName.text.toString())
+            }
+        }
         override fun preAnimateRemoveImpl(holder: RecyclerView.ViewHolder) {
             // do something
         }
@@ -118,11 +127,11 @@ class HomeAdapter: RecyclerSwipeAdapter<HomeAdapter.ViewHolder>() {
         fun bind(listItem: FridgeItemInfo, position:Int){
             currentItemInfo = listItem
             currentPosition = position
-            val bytes: ByteArray = listItem.img
+            val bytes: ByteArray = listItem.img!!
             val newBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options())
             itemIMG.setImageBitmap(newBitmap)
             itemName.text = listItem.name
-            itemExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp))
+            itemExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp!!))
         }
 
     }

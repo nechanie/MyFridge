@@ -64,12 +64,12 @@ class RecipesFragment : Fragment() {
 
         fridgedatabaseViewModel.fridgeItemNameAll.observe(viewLifecycleOwner) {
             ingredients = it!!.joinToString(separator=",+")
-            Log.d("RecipesFragment", "${ingredients}")
         }
 
         val searchButton : Button = root.findViewById(R.id.searchRecipesButton)
         searchButton.setOnClickListener {
             searchRecipe(recipesViewModel, ingredients)
+            Log.d("Ingredients", ingredients)
         }
         return root
     }
@@ -85,6 +85,7 @@ class RecipesFragment : Fragment() {
     fun searchRecipe(viewModel: RecipesViewModel, ingredients: String) {
         databaseViewModel.addAPICallInfo(APICallInfo(ingredients, System.currentTimeMillis()))
         viewModel.loadRecipeResults(SPOONACULAR_APPID, ingredients)
+        Log.d("RecipeResult Parameters", "AppId: ${SPOONACULAR_APPID} , Ingredients: ${ingredients}")
     }
     override fun onDestroyView() {
         super.onDestroyView()

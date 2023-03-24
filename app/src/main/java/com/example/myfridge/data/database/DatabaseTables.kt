@@ -2,6 +2,7 @@ package com.example.myfridge.data.database
 
 import android.widget.CalendarView
 import android.widget.DatePicker
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -19,11 +20,10 @@ data class APICallInfo(
 @Entity
 data class FridgeItemInfo(
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val img: ByteArray,
+    val img: ByteArray?,
     @PrimaryKey
     val name: String,
-    val exp: Long,
-
+    val exp: Long?,
     ) : java.io.Serializable {
     @Ignore
     var showingMenu: Boolean = false
@@ -40,4 +40,4 @@ data class RecipeDetailedItemInfo(
     val sourceUrl: String = "",
     val aggregateLikes: Int,
     val summary: String = ""
-)
+    ) : java.io.Serializable

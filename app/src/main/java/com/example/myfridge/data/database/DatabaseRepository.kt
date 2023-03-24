@@ -34,4 +34,18 @@ class DatabaseRepository {
         val getAllFridgeItems = dao.queryAll()
         val getAllFridgeItemNames = dao.queryAllNames()
     }
+
+//    class ShoppingListRepository(
+//        private val dao: DatabaseDAO.ShoppingListDAO
+//    ){
+//        suspend fun insertShoppingList(shoppingList:ShoppingList) = dao.insert(shoppingList)
+//
+//        suspend fun deleteShoppingList(shoppingList:ShoppingList) = dao.delete(shoppingList)
+//
+//        suspend fun updateShoppingList(shoppingList:ShoppingList) = dao.update(shoppingList)
+//
+//        fun getShoppingList(name: String) = dao.query(name)
+//
+//        val getAllShoppingLists = dao.queryAll()
+//    }
 }

@@ -47,4 +47,22 @@ class DatabaseDAO{
         @Query("SELECT name FROM FridgeItemInfo")
         fun queryAllNames(): Flow<List<String>?>
     }
+
+//    @Dao
+//    interface ShoppingListDAO{
+//        @Insert(onConflict = OnConflictStrategy.REPLACE)
+//        suspend fun insert(list: ShoppingList)
+//
+//        @Delete
+//        suspend fun delete(list: ShoppingList)
+//
+//        @Update
+//        suspend fun update(list: ShoppingList)
+//
+//        @Query("SELECT * FROM ShoppingList WHERE name = :name LIMIT 1")
+//        fun query(name:String): Flow<ShoppingList?>
+//
+//        @Query("SELECT * FROM ShoppingList")
+//        fun queryAll(): Flow<List<ShoppingList>?>
+//    }
 }
