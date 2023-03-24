@@ -1,12 +1,19 @@
 package com.example.myfridge.ui.settings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.myfridge.MainActivity
 import com.example.myfridge.R
-import com.example.myfridge.databinding.TestLayoutBinding
+import com.example.myfridge.databinding.FragmentThemeSettingsBinding
 import com.quickersilver.themeengine.ThemeChooserDialogBuilder
 import com.quickersilver.themeengine.ThemeEngine
 import com.quickersilver.themeengine.ThemeMode
@@ -14,14 +21,14 @@ import com.quickersilver.themeengine.ThemeMode
 class ThemeSettings:  Fragment(){
     private lateinit var themeEngine: ThemeEngine
 
-    private var _binding: TestLayoutBinding? = null
+    private var _binding: FragmentThemeSettingsBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         themeEngine = ThemeEngine.getInstance(requireContext())
-        _binding = TestLayoutBinding.inflate(inflater, container, false)
+        _binding = FragmentThemeSettingsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -52,15 +59,23 @@ class ThemeSettings:  Fragment(){
                 .setPositiveButton("OK") { _, theme ->
                     themeEngine.staticTheme = theme
                     requireActivity().recreate()
+                    findNavController().navigate(ThemeSettingsDirections.actionThemeSettingsSelf())
                 }
                 .setNegativeButton("Cancel")
                 .setNeutralButton("Default") { _, _ ->
                     themeEngine.resetTheme()
                     requireActivity().recreate()
+                    findNavController().navigate(ThemeSettingsDirections.actionThemeSettingsSelf())
                 }
                 .setIcon(R.drawable.ic_round_brush)
                 .create()
                 .show()
         }
+    }
+
+    override fun onResume() {
+        Log.d("THEMEFRAGMENTRESUME", "${findNavController().currentDestination.toString()}")
+        (requireActivity() as MainActivity)
+        super.onResume()
     }
 }

@@ -48,21 +48,31 @@ class DatabaseDAO{
         fun queryAllNames(): Flow<List<String>?>
     }
 
-//    @Dao
-//    interface ShoppingListDAO{
-//        @Insert(onConflict = OnConflictStrategy.REPLACE)
-//        suspend fun insert(list: ShoppingList)
-//
-//        @Delete
-//        suspend fun delete(list: ShoppingList)
-//
-//        @Update
-//        suspend fun update(list: ShoppingList)
-//
-//        @Query("SELECT * FROM ShoppingList WHERE name = :name LIMIT 1")
-//        fun query(name:String): Flow<ShoppingList?>
-//
-//        @Query("SELECT * FROM ShoppingList")
-//        fun queryAll(): Flow<List<ShoppingList>?>
-//    }
+    @Dao
+    interface ShoppingListItemDAO{
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insert(shoppingListItemInfo : ShoppingListItemInfo)
+
+        @Delete
+        suspend fun delete(shoppingListItemInfo: ShoppingListItemInfo)
+
+        @Query("SELECT * FROM ShoppingListItemInfo")
+        fun queryAll() : Flow<List<ShoppingListItemInfo>?>
+
+        @Query("SELECT * FROM ShoppingListItemInfo WHERE listName = :listName")
+        fun getItemsForList(listName: String): Flow<List<ShoppingListItemInfo>?>
+    }
+
+    @Dao
+    interface ShoppingListDAO{
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insert(shoppingListInfo: ShoppingListInfo)
+
+        @Query("SELECT * FROM ShoppingListInfo")
+        fun queryAll() : Flow<List<ShoppingListInfo>?>
+
+        @Query("Select name FROM ShoppingListInfo")
+        fun queryAllNames() : Flow<List<String>?>
+    }
+
 }
