@@ -75,7 +75,7 @@ class RecipesDetailedFragment: Fragment() {
                     setImageResource(R.drawable.ic_detailed_recipe_likes)
                 }
                 binding.detailedRecipeLikesText.apply {
-                    text = "${recipes.aggregateLikes}"
+                    text = "${recipes.aggregateLikes} likes"
                 }
                 binding.detailedRecipeSummaryText.apply {
                     text = Html.fromHtml(recipes.summary, HtmlCompat.FROM_HTML_MODE_LEGACY)
