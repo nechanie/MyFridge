@@ -20,7 +20,6 @@ class RecipesAdapter(private val onClickFunc: (RecipeItem, Int, View) -> Unit): 
 
     fun updateRecipesList(recipes: RecipeResults?) {
         recipesList = recipes?.list ?: listOf()
-        Log.d("Adapter", "${recipesList}")
         notifyDataSetChanged()
     }
 

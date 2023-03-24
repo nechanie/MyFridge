@@ -20,6 +20,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myfridge.BuildConfig
 import com.example.myfridge.R
 import com.example.myfridge.data.database.APICallInfo
@@ -36,9 +37,11 @@ class RecipesFragment : Fragment() {
     private val databaseViewModel: DatabaseViewModel.APICallInfoViewModel by viewModels()
     private val fridgedatabaseViewModel: DatabaseViewModel.FridgeItemInfoViewModel by viewModels()
     private var _binding: FragmentRecipesBinding? = null
-    private var ingredients: String = "bananas"
+    private var ingredients: String = "banana"
     private lateinit var recipesAdapter: RecipesAdapter
     private lateinit var recipesRv: RecyclerView
+    private lateinit var swipeContainer: SwipeRefreshLayout
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -66,11 +69,13 @@ class RecipesFragment : Fragment() {
             ingredients = it!!.joinToString(separator=",+")
         }
 
-        val searchButton : Button = root.findViewById(R.id.searchRecipesButton)
-        searchButton.setOnClickListener {
+        swipeContainer = binding.swiperefresh
+        swipeContainer.setOnRefreshListener {
             searchRecipe(recipesViewModel, ingredients)
-            Log.d("Ingredients", ingredients)
+            swipeContainer.setRefreshing(false)
         }
+
+
         return root
     }
 
