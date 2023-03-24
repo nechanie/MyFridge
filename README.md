@@ -103,7 +103,7 @@ We suggest exploring the guide of our app content below:
     <details>
     <summary>Camera</summary>
       <p>Description</p>
-      Brings up the camera for the user to take a picture of the item’s nutrition facts. After the photo is taken, it will be stored with the specified item.
+      Brings up the camera for the user to take a picture of the item’s nutrition facts or of the food. After the photo is taken, it will be stored with the specified item.
     </details>
   </details>
 
