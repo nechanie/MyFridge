@@ -24,6 +24,7 @@ import com.example.myfridge.databinding.FragmentHomeBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.quickersilver.themeengine.ThemeEngine
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter
 
 
 class HomeFragment : Fragment() {
@@ -67,7 +68,7 @@ class HomeFragment : Fragment() {
         homeRv.layoutManager = LinearLayoutManager(context)
         homeAdapter = HomeAdapter(::onShopClick, ::onDeleteClick)
         homeAdapter.mode = Attributes.Mode.Single
-        homeRv.adapter = AlphaInAnimationAdapter(homeAdapter).apply {
+        homeRv.adapter = SlideInLeftAnimationAdapter(homeAdapter).apply {
             // Change the durations.
             setDuration(4000)
             // Change the interpolator.
@@ -76,9 +77,11 @@ class HomeFragment : Fragment() {
             setFirstOnly(false)
         }
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
+            binding.multiStateView.viewState = MultiStateView.ViewState.CONTENT
             homeAdapter.updateHomeList(FridgeContent(it!!))
-        }
 
+        }
+        binding.multiStateView.viewState = MultiStateView.ViewState.LOADING
 
         return root
     }
