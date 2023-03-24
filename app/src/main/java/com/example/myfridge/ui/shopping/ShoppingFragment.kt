@@ -17,6 +17,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfridge.R
+import com.example.myfridge.data.database.ShoppingListItemInfo
 import com.example.myfridge.data.shopping.ShoppingList
 import com.example.myfridge.databinding.FragmentShoppingBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
@@ -77,7 +78,7 @@ class ShoppingFragment : Fragment() {
         //recycler view for the shopping list
         shoppingRv = binding.rvShopping
         shoppingRv.layoutManager = LinearLayoutManager(container?.context)
-        shoppingAdapter = ShoppingAdapter()
+        shoppingAdapter = ShoppingAdapter(::onDeleteButtonClick)
         shoppingRv.adapter = shoppingAdapter
         Log.d("Shopping Fragment", args.shoppingListName)
         viewModel.getItemsForList(args.shoppingListName).observe(viewLifecycleOwner){
@@ -87,6 +88,9 @@ class ShoppingFragment : Fragment() {
         return root
     }
 
+    fun onDeleteButtonClick(shoppingListItemInfo: ShoppingListItemInfo){
+        viewModel.deleteShoppingListItemInfo(shoppingListItemInfo)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
