@@ -55,11 +55,6 @@ class ShoppingFragment : Fragment() {
                         findNavController().navigate(destination)
                         true
                     }
-                    R.id.action_add_shoppingList -> {
-                        val destination = ShoppingFragmentDirections.actionNavShoppingListToAddShoppingListFragment()
-                        findNavController().navigate(destination)
-                        true
-                    }
                     else -> {
                         (activity as AppCompatActivity).onOptionsItemSelected(menuItem)
                     }
