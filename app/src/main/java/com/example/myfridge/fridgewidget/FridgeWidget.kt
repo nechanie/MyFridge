@@ -13,8 +13,16 @@ import android.widget.ListView
 import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
+import androidx.preference.PreferenceManager
 import com.example.myfridge.MainActivity
 import com.example.myfridge.R
+import com.example.myfridge.data.database.AppDatabase
+import com.example.myfridge.data.database.DatabaseRepository
+import com.example.myfridge.data.database.FridgeItemInfo
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 /**
  * Implementation of App Widget functionality.
@@ -23,12 +31,26 @@ const val TOAST_ACTION = "com.example.myfridge.TOAST_ACTION"
 const val EXTRA_ITEM = "com.example.myfridge.EXTRA_ITEM"
 
 class FridgeWidget : AppWidgetProvider() {
-
+    private lateinit var databaseRepository: DatabaseRepository.FridgeItemInfoRepository
+    private lateinit var allFridgeItems: LiveData<List<FridgeItemInfo>?>
+    private lateinit var fridgeItemDAO : AppDatabase
+    private var itemList : MutableList<FridgeItemInfo> = mutableListOf()
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val prefDays = prefs.getString(context.getString(R.string.pref_expiration_key), "7")
+        val expDate = LocalDateTime.now().plusDays(Integer.parseInt(prefDays!!).toLong()).toInstant(
+            ZoneOffset.UTC).toEpochMilli()
+        fridgeItemDAO = AppDatabase.getInstance(context)
+        databaseRepository = DatabaseRepository.FridgeItemInfoRepository(fridgeItemDAO.fridgeItemInfoDao())
+        allFridgeItems = databaseRepository.getExpiringSoon(expDate).asLiveData()
+        allFridgeItems.observeForever{
+            itemList.clear()
+            itemList.addAll(it.orEmpty())
+        }
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             // Set up the intent that starts the StackViewService, which

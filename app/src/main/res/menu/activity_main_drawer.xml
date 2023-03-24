@@ -13,14 +13,10 @@
             android:title="@string/menu_recipes"
             android:icon="@drawable/ic_recipes"/>
         <item
-            android:id="@+id/nav_shopping"
-            android:title="@string/menu_shopping"
-            android:icon="@drawable/ic_shopping"/>
-        <item
             android:id="@+id/nav_expiring"
             android:title="@string/menu_expiring"
             android:icon="@drawable/ic_expiring"/>
-        <item android:id="@+id/settingsActivity"
+        <item android:id="@+id/nav_settings"
             android:title="Settings"
             android:icon="@drawable/ic_settings"/>
     </group>

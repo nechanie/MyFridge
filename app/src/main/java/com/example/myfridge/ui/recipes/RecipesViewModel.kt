@@ -1,5 +1,6 @@
 package com.example.myfridge.ui.recipes
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,7 +16,9 @@ class RecipesViewModel : ViewModel() {
     private val recipe = RecipeSearch(RecipesService.create())
     private val _recipes = MutableLiveData<RecipeResults?>()
     private val _status = MutableLiveData<RecyclerStatus>(RecyclerStatus.CONTENT)
-    var status: LiveData<RecyclerStatus> = _status
+
+    val status: LiveData<RecyclerStatus> = _status
+
     val recipes: LiveData<RecipeResults?> = _recipes
     private val _error = MutableLiveData<String?>(null)
     var error: LiveData<String?> = _error
@@ -31,7 +34,6 @@ class RecipesViewModel : ViewModel() {
                 true -> RecyclerStatus.CONTENT
                 false -> RecyclerStatus.ERROR
             }
-
         }
     }
 }

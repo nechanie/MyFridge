@@ -1,5 +1,6 @@
 package com.example.myfridge.data.recipes
 
+import android.util.Log
 import com.example.myfridge.api.RecipesService
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -14,11 +15,14 @@ class RecipeSearch (
             try {
                 val response = service.getRecipesData(appid, ingredients)
                 if (response.isSuccessful) {
+                    Log.d("Good", "${response.body()}")
                     Result.success(response.body())
                 } else {
+                    Log.d("Error", "${response.errorBody()?.toString()}")
                     Result.failure(Exception(response.errorBody()?.string()))
                 }
             } catch (e: Exception) {
+                Log.d("Error", "${e}}")
                 Result.failure(e)
             }
         }

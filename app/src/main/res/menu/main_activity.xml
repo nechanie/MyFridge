@@ -3,16 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_add_fridge_item"
-        android:orderInCategory="100"
-        android:visible="false"
         android:icon="@drawable/ic_add"
         android:title="@string/action_add"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_add_shopping_item"
-        android:orderInCategory="100"
-        android:visible="false"
-        android:icon="@drawable/ic_add"
-        android:title="@string/action_add"
-        app:showAsAction="ifRoom"/>
+
 </menu>
