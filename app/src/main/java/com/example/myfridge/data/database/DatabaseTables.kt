@@ -49,11 +49,6 @@ data class ShoppingListItemInfo(
     val listName : String
 ) : java.io.Serializable
 
-    ) : java.io.Serializable {
-    @Ignore
-    var showingMenu: Boolean = false
-    }
-
 @Entity
 data class RecipeDetailedItemInfo(
     @PrimaryKey
