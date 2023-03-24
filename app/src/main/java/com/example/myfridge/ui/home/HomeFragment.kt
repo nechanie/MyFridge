@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kennyc.view.MultiStateView
 import com.daimajia.swipe.util.Attributes
 import com.example.myfridge.R
 import com.example.myfridge.data.database.FridgeItemInfo
@@ -40,6 +41,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         themeEngine = ThemeEngine.getInstance(requireContext())
         (activity as MenuHost).addMenuProvider(object: MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater){
@@ -76,6 +78,7 @@ class HomeFragment : Fragment() {
         viewModel.fridgeItemInfoAll.observe(viewLifecycleOwner) {
             homeAdapter.updateHomeList(FridgeContent(it!!))
         }
+
 
         return root
     }

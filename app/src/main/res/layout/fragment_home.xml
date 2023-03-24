@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.kennyc.view.MultiStateView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6C0706"
+    android:id="@+id/multiStateView"
+    app:msv_loadingView="@layout/loading_view"
+    app:msv_viewState="loading"
     tools:context=".ui.home.HomeFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginHorizontal="11dp"
         android:layout_width="match_parent"
@@ -27,4 +37,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+</com.kennyc.view.MultiStateView>

@@ -23,14 +23,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.myfridge.BuildConfig
 import com.example.myfridge.R
+import com.example.myfridge.data.RecyclerStatus
 import com.example.myfridge.data.database.APICallInfo
 import com.example.myfridge.data.recipes.RecipeItem
 import com.example.myfridge.databinding.FragmentRecipesBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
+
+import com.kennyc.view.MultiStateView
+
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.addTransformation
 import com.skydoves.transformationlayout.onTransformationStartContainer
+
 
 const val SPOONACULAR_APPID = BuildConfig.SPOONACULAR_API_KEY
 class RecipesFragment : Fragment() {
@@ -51,6 +56,7 @@ class RecipesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val recipesViewModel =
             ViewModelProvider(this)[RecipesViewModel::class.java]
 
@@ -61,6 +67,26 @@ class RecipesFragment : Fragment() {
         recipesRv.layoutManager = LinearLayoutManager(container?.context)
         recipesAdapter = RecipesAdapter(::forwardDetailedRecipe)
         recipesRv.adapter = recipesAdapter
+
+        recipesViewModel.status.observe(viewLifecycleOwner){status ->
+            when(status){
+                RecyclerStatus.LOADING -> {
+                    binding.multiStateView.viewState = MultiStateView.ViewState.LOADING
+                }
+                RecyclerStatus.ERROR -> {
+                    binding.multiStateView.viewState = MultiStateView.ViewState.ERROR
+                }
+                RecyclerStatus.CONTENT->{
+                    binding.multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                }
+            }
+        }
+
+        recipesViewModel.error.observe(viewLifecycleOwner){errorMessage ->
+            if(errorMessage != null){
+                requireActivity().findViewById<TextView>(R.id.errorTV).text = errorMessage
+            }
+        }
         recipesViewModel.recipes.observe(viewLifecycleOwner) {
             recipesAdapter.updateRecipesList(it)
         }

@@ -24,7 +24,11 @@ import com.example.myfridge.ui.database.DatabaseViewModel
 import com.example.myfridge.ui.home.HomeAdapter
 import com.example.myfridge.ui.home.HomeFragmentDirections
 import com.example.myfridge.ui.recipes.ShoppingAdapter
+
+import com.kennyc.view.MultiStateView
+
 import kotlinx.coroutines.flow.observeOn
+
 
 class ShoppingFragment : Fragment() {
     private val viewModel: DatabaseViewModel.ShoppingListItemInfoViewModel by viewModels()
@@ -75,11 +79,13 @@ class ShoppingFragment : Fragment() {
         shoppingRv.layoutManager = LinearLayoutManager(container?.context)
         shoppingAdapter = ShoppingAdapter(::onDeleteButtonClick)
         shoppingRv.adapter = shoppingAdapter
+
         Log.d("Shopping Fragment", args.shoppingListName)
         viewModel.getItemsForList(args.shoppingListName).observe(viewLifecycleOwner){
             Log.d("Shopping Fragment", it.toString())
             shoppingAdapter.updateShoppingList(it)
         }
+
         return root
     }
 
