@@ -30,12 +30,12 @@ import com.skydoves.transformationlayout.onTransformationEndContainer
 
 class RecipesDetailedFragment: Fragment() {
     private val databaseViewModel: DatabaseViewModel.APICallInfoViewModel by viewModels()
-    private val recipesDetailedViewModel = ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
+    private val recipesDetailedViewModel =
+        ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
     private val args: RecipesDetailedFragmentArgs by navArgs()
     private var _binding: FragmentRecipesDetailedBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -44,9 +44,6 @@ class RecipesDetailedFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-
-        val recipesDetailedViewModel =
-            ViewModelProvider(this)[RecipesDetailedViewModel::class.java]
         _binding = FragmentRecipesDetailedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
@@ -105,7 +102,7 @@ class RecipesDetailedFragment: Fragment() {
     }
 
     fun searchRecipeDetailed(viewModel: RecipesDetailedViewModel, recipe: RecipeItem) {
-        viewModel.loadDetailedRecipeResults(recipe!!.id, SPOONACULAR_APPID)
+        viewModel.loadDetailedRecipeResults(recipe.id, SPOONACULAR_APPID)
     }
 
     private fun onInstructionButtonClicked(url: String) {

@@ -43,9 +43,16 @@
     <string name="month">MM</string>
     <string name="year">YYYY</string>
 
+    <!-- Add To Shopping Slider Fragment -->
     <string name="add_to_shopping_list">Select a Shopping List to Add This Item To</string>
     <string name="add_to_shopping_error">You don\'t have any shopping lists to add to</string>
 
+
+    <!-- Shopping List -->
+    <string name="shopping_list_item_editname_hint">Enter Name of Item</string>
+    <string name="add_to_shopping_item">Add Item</string>
+    <string name="create_shopping_list_text">Create Shopping List</string>
+    <string name="shopping_list_spinner">Enter Name of Shopping List</string>
 
     <string name="image_dir">temp_images</string>
     <string name="image_file">temp_image.jpg</string>
