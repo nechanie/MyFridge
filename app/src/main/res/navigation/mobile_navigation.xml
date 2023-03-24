@@ -34,7 +34,17 @@
         android:id="@+id/nav_shopping"
         android:name="com.example.myfridge.ui.shopping.ShoppingFragment"
         android:label="@string/menu_shopping"
-        tools:layout="@layout/fragment_shopping" />
+        tools:layout="@layout/fragment_shopping" >
+        <argument
+            android:name="shoppingListName"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_nav_shoppingList_to_addShoppingListItemFragment"
+            app:destination="@id/addShoppingListItemFragment" />
+        <action
+            android:id="@+id/action_nav_shoppingList_to_addShoppingListFragment"
+            app:destination="@+id/addShoppingListFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/nav_expiring"
         android:name="com.example.myfridge.ui.expiring.ExpiringFragment"
@@ -74,7 +84,23 @@
     <fragment
         android:id="@+id/themeSettings"
         android:name="com.example.myfridge.ui.settings.ThemeSettings"
-        android:label="ThemeSettings" />
+        android:label="ThemeSettings" >
+        <action
+            android:id="@+id/action_themeSettings_self"
+            app:destination="@id/themeSettings"
+            app:popUpTo="@id/nav_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/addShoppingListItemFragment"
+        android:name="com.example.myfridge.ui.shopping.AddShoppingListItemFragment"
+        android:label="AddShoppingListItemFragment" />
+    <fragment
+        android:id="@+id/addShoppingListFragment"
+        android:name="com.example.myfridge.ui.shopping.AddShoppingListFragment"
+        android:label="AddShoppingListFragment"/>
+    <action android:id="@+id/action_global_nav_shopping" app:destination="@id/nav_shopping"/>
+    <action android:id="@+id/action_global_addShoppingListFragment" app:destination="@id/addShoppingListFragment"/>
+
 
 
 </navigation>

@@ -69,30 +69,39 @@ class DatabaseViewModel {
         fun getFridgeItemInfo(fridgeInfo: String) = repository.getFridgeItemInfo(fridgeInfo).asLiveData()
     }
 
-//    class ShoppingListViewModel(application: Application): AndroidViewModel(application){
-//        private val repository = DatabaseRepository.ShoppingListRepository(
-//            AppDatabase.getInstance(application).shoppingListDao()
-//        )
-//        val shoppingLists: LiveData<List<ShoppingList>?> = repository.getAllShoppingLists.asLiveData()
-//
-//        fun addShoppingList(shoppingList: ShoppingList){
-//            viewModelScope.launch{
-//                repository.insertShoppingList(shoppingList)
-//            }
-//        }
-//
-//        fun deleteShoppingList(shoppingList: ShoppingList){
-//            viewModelScope.launch{
-//                repository.deleteShoppingList(shoppingList)
-//            }
-//        }
-//
-//        fun updateShoppingListo(shoppingList: ShoppingList){
-//            viewModelScope.launch{
-//                repository.updateShoppingList(shoppingList)
-//            }
-//        }
-//        fun getShoppingList(name: String) = repository.getShoppingList(name).asLiveData()
-//    }
+    class ShoppingListItemInfoViewModel(application: Application): AndroidViewModel(application){
+        private val repository = DatabaseRepository.ShoppingListItemInfoRepository(
+            AppDatabase.getInstance(application).shoppingListItemInfoDao()
+        )
+        val shoppingListItemInfoAll: LiveData<List<ShoppingListItemInfo>?> = repository.getAllShoppingListItems.asLiveData()
+
+        fun addShoppingListItemInfo(shoppingListItemInfo: ShoppingListItemInfo){
+            viewModelScope.launch{
+                repository.insertShoppingListItem(shoppingListItemInfo)
+            }
+        }
+
+        fun deleteShoppingListItemInfo(shoppingListItemInfo: ShoppingListItemInfo){
+            viewModelScope.launch{
+                repository.deleteShoppingListItem(shoppingListItemInfo)
+            }
+        }
+
+        fun getItemsForList(listName: String) = repository.getItemsForList(listName).asLiveData()
+    }
+
+    class ShoppingListInfoViewModel(application: Application) : AndroidViewModel(application){
+        private val repository = DatabaseRepository.ShoppingListInfoRepository(
+            AppDatabase.getInstance(application).shoppingListInfoDao()
+        )
+        val shoppingListInfoAll : LiveData<List<ShoppingListInfo>?> = repository.getAllShoppingLists.asLiveData()
+        val shoppingListInfoNamesAll : LiveData<List<String>?> = repository.getAllShoppingListNames.asLiveData()
+
+        fun addShoppingListInfo(shoppingListInfo: ShoppingListInfo){
+            viewModelScope.launch{
+                repository.insertShoppingList(shoppingListInfo)
+            }
+        }
+    }
 
 }
