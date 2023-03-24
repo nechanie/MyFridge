@@ -23,7 +23,8 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:id="@+id/recipe_item_image"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/recipe_img_desc"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

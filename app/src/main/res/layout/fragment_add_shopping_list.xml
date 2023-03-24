@@ -14,12 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addName"
-        android:hint="Enter Name of Shopping List" />
+        android:hint="@string/enter_shopping_name_hint" />
 
     <Button
         android:id="@+id/addShoppingListButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Shopping List" />
+        android:text="@string/create_shopping_list_button" />
 
 </LinearLayout>

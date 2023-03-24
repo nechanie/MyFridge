@@ -29,7 +29,8 @@
                 android:scaleType="fitCenter"
                 android:id="@+id/expiring_item_img"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/expiring_food_img" />
         </LinearLayout>
         <LinearLayout
             card_view:layout_constraintLeft_toRightOf="@+id/leftLL"

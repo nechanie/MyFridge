@@ -9,7 +9,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_add"
-        />
+        android:contentDescription="@string/add_image_imgButtn" />
     <EditText
         android:id="@+id/editName"
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
             android:id="@+id/editDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
+            android:hint="@string/date"
             android:layout_gravity="center_horizontal"
             android:datePickerMode="spinner"
             android:calendarViewShown="false"/>
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Submit"
+        android:text="@string/submit_button"
         />
 
 </LinearLayout>
