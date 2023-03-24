@@ -43,11 +43,11 @@ class ExpiringAdapter : RecyclerView.Adapter<ExpiringAdapter.ViewHolder>(){
         fun bind(listItem: FridgeItemInfo){
             currentExpiringItemInfo = listItem
 
-            val bytes: ByteArray = listItem.img
+            val bytes: ByteArray = listItem.img!!
             val newBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options())
             expiringIMG.setImageBitmap(newBitmap)
             expiringName.text = listItem.name
-            expiringExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp))
+            expiringExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp!!))
         }
     }
 }

@@ -16,10 +16,10 @@ data class APICallInfo(
 @Entity
 data class FridgeItemInfo(
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    val img: ByteArray,
+    val img: ByteArray?,
     @PrimaryKey
     val name: String,
-    val exp: Long,
+    val exp: Long?,
 
     ) : java.io.Serializable
 

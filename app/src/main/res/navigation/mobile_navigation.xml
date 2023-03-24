@@ -72,7 +72,12 @@
     <fragment
         android:id="@+id/themeSettings"
         android:name="com.example.myfridge.ui.settings.ThemeSettings"
-        android:label="ThemeSettings" />
+        android:label="ThemeSettings" >
+        <action
+            android:id="@+id/action_themeSettings_self"
+            app:destination="@id/themeSettings"
+            app:popUpTo="@id/nav_settings" />
+    </fragment>
     <fragment
         android:id="@+id/addShoppingListItemFragment"
         android:name="com.example.myfridge.ui.shopping.AddShoppingListItemFragment"
@@ -82,6 +87,8 @@
         android:name="com.example.myfridge.ui.shopping.AddShoppingListFragment"
         android:label="AddShoppingListFragment"/>
     <action android:id="@+id/action_global_nav_shopping" app:destination="@id/nav_shopping"/>
+    <action android:id="@+id/action_global_addShoppingListFragment" app:destination="@id/addShoppingListFragment"/>
+
 
 
 </navigation>

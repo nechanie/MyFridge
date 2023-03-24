@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     android:background="#6C0706"
     tools:context=".ui.home.HomeFragment">
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spin"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginHorizontal="11dp"
         android:layout_width="match_parent"

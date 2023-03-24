@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.util.Attributes
 import com.example.myfridge.R
+import com.example.myfridge.data.database.FridgeItemInfo
 import com.example.myfridge.data.fridge.FridgeContent
 import com.example.myfridge.databinding.FragmentHomeBinding
 import com.example.myfridge.ui.database.DatabaseViewModel
@@ -51,10 +52,6 @@ class HomeFragment : Fragment() {
                         findNavController().navigate(destination)
                         true
                     }
-                    R.id.action_picker -> {
-                        Log.d("VELU OF SPINNER", binding.spin.selectedItem.toString())
-                        true
-                    }
                     else -> (activity as AppCompatActivity).onOptionsItemSelected(menuItem)
                 }
             }
@@ -62,23 +59,6 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val spinner = binding.spin
-        val strings = listOf<String>("string1", "string2", "string3", "string4")
-        val adapter = ArrayAdapter<String> (
-            requireContext(),
-            android.R.layout.simple_spinner_item, strings
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-//        spinner.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                TODO("Not yet implemented")
-//            }
-//        }
 
 
         homeRv = root.findViewById(R.id.rv_home)
@@ -101,6 +81,7 @@ class HomeFragment : Fragment() {
     }
 
     fun onShopClick(text:String){
+        viewModel.deleteFridgeItemInfo(FridgeItemInfo(null,"name", null))
 //        val list = mutableListOf<String>(text, text)
 //        val shopList = ShoppingList("NewList", list)
 //        shoppingViewModel.addShoppingList(shopList)

@@ -120,11 +120,11 @@ class HomeAdapter(private val onShopClick: (String) -> Unit): RecyclerSwipeAdapt
         fun bind(listItem: FridgeItemInfo, position:Int){
             currentItemInfo = listItem
             currentPosition = position
-            val bytes: ByteArray = listItem.img
+            val bytes: ByteArray = listItem.img!!
             val newBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options())
             itemIMG.setImageBitmap(newBitmap)
             itemName.text = listItem.name
-            itemExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp))
+            itemExp.text = SimpleDateFormat("MM/dd/yyyy").format(Date(listItem.exp!!))
         }
 
     }

@@ -86,8 +86,8 @@ dependencies {
     implementation "com.mikepenz:materialdrawer-iconics:9.0.1"
     implementation 'io.github.prathameshmm02.themeEngine:themeEngine:1.0'
     implementation  'com.github.Kennyc1012:MultiStateView:2.2.0'
-
     implementation "com.mikepenz:iconics-core:5.4.0"
+
 
     implementation 'com.mikepenz:google-material-typeface:4.0.0.2-kotlin@aar'
     implementation 'com.mikepenz:material-design-iconic-typeface:2.2.0.8-kotlin@aar'
