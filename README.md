@@ -173,8 +173,4 @@ We suggest exploring the guide of our app content below:
 ## Our Team
 [@Nechanie](https://github.com/nechanie),
 [@METrimble](https://github.com/METrimble),
-<<<<<<< HEAD
 [@truongad](https://github.com/truongad)
-=======
-[@truongad](https://github.com/truongad)
->>>>>>> master
