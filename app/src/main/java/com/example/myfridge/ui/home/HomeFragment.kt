@@ -108,6 +108,8 @@ class HomeFragment : Fragment() {
 
     fun onDeleteClick(name:String) {
         viewModel.deleteFridgeItemInfo(FridgeItemInfo(null, name, null))
+        val navController = findNavController()
+        navController.navigate(R.id.nav_home)
     }
 
     override fun onDestroyView() {
